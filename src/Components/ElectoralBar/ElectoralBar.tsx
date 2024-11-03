@@ -12,16 +12,11 @@ export const ElectoralBar = ({
   const undecidedBarPercentage =
     (538 - (democratVotes + republicanVotes)) / 538;
 
-  console.log(democratVotes);
-
-  console.log(demBarPercentage, repBarPercentage, undecidedBarPercentage);
-
   return (
     <div>
-      <h1>ELECTION 2024</h1>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h4 style={{ color: "#1375b7" }}>Democrats: {democratVotes}</h4>{" "}
-        <h4 style={{ color: "#c93135" }}> Republicans: {republicanVotes} </h4>
+        <h4 style={{ color: "#1375b7" }}>Harris: {democratVotes}</h4>{" "}
+        <h4 style={{ color: "#c93135" }}> Trump: {republicanVotes} </h4>
       </div>
 
       <div>
