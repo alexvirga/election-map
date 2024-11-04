@@ -60,7 +60,7 @@ const SideDrawer = () => {
         elevation={0}
         sx={{
           borderBottom: "4px solid #1976d2",
-          backgroundColor: "#f1f1f1",
+          backgroundColor: "white",
           zIndex: theme.zIndex.drawer + 1, // Ensure it stays above the drawer
 
           color: "inherit",
@@ -124,6 +124,36 @@ const SideDrawer = () => {
         >
           Sign Out
         </Button>
+
+        <Box sx={{ display: "flex", marginTop: "auto" }}>
+          <Typography
+            variant="caption"
+            sx={{
+              textAlign: "center",
+              width: "100%",
+              padding: 1,
+              color: "#757575", // Light gray color for subtlety
+            }}
+          >
+            Created by{" "}
+            <a
+              href="https://alexvirga.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Alex Virga
+            </a>
+            <br />
+            <a
+              href="https://www.buymeacoffee.com/alexvirga"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              Buy Me a Coffee
+            </a>
+          </Typography>
+        </Box>
       </Drawer>
     </Box>
   );

@@ -145,7 +145,7 @@ export const LeagueDetails = () => {
       >
         {members.map((member, idx) => (
           <Box style={{ width: "200px" }} key={idx}>
-            <h4> {member.profile.username} </h4>
+            <Typography variant="body1"> {member.profile.username} </Typography>
             {member.profile.electoral_predictions ? (
               <USMap
                 setSelectedStates={() => {}}

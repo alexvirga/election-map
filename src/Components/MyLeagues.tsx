@@ -58,6 +58,7 @@ export const MyLeagues = () => {
           key={league.league_id}
           onClick={() => navigate(`/league/${league.leagues.invite_code}`)}
           style={{ cursor: "pointer", width: "fit-content" }}
+          variant="body2"
         >
           {league.leagues.name}
         </Typography>
