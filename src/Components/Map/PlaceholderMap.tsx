@@ -1,9 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import {
-  usStatesPathData,
-  electoralVotes,
-  SelectedElectoralVotes,
-} from "../../usStatesPathData";
+import { usStatesPathData, electoralVotes } from "../../usStatesPathData";
 
 import "./Maps.css";
 
@@ -23,8 +19,6 @@ export const PlaceholderMap = ({ smallView }: USMapPlaceholderProps) => {
     "MD",
     "DC",
   ];
-
-  const colors = ["#d6d6d6", "#1375b7", "#c93135"];
 
   return (
     <div style={{ position: "relative" }}>

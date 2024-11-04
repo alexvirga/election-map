@@ -1,17 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../api/supabase";
 import { useNavigate } from "react-router-dom";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
-  TextField,
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 type League = {
   league_id: number;

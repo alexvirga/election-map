@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../../api/supabase";
 import Countdown from "../../Components/Countdown";
 import {
@@ -7,9 +7,6 @@ import {
   IconButton,
   Typography,
   Drawer,
-  List,
-  ListItem,
-  ListItemText,
   Box,
   Button,
   Divider,

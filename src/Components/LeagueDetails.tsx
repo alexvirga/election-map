@@ -3,24 +3,7 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../api/supabase";
 import USMap from "./Map/USMap";
 import { SelectedElectoralVotes } from "../types";
-import Avatar from "@mui/material/Avatar";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
-  TextField,
-  Divider,
-  Box,
-  Typography,
-  Tooltip,
-  IconButton,
-} from "@mui/material";
-import { usStatesPathData, electoralVotes } from "../usStatesPathData";
-import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
-import LeagueResultsTable from "./LeagueResultsTable";
+import { Divider, Box, Typography, Tooltip, IconButton } from "@mui/material";
 import PlaceholderMap from "./Map/PlaceholderMap";
 import LeagueLeaderboard from "./LeagueLeaderboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -43,9 +26,8 @@ export const LeagueDetails = () => {
   const { id: leagueId } = useParams<{ id: string }>();
   const [members, setMembers] = useState<Member[]>([]);
   const [leagueDetails, setLeagueDetails] = useState<LeagueDetails>();
-  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
-  const [status, setStatus] = useState("");
+  const [, setStatus] = useState("");
 
   useEffect(() => {
     if (!leagueId) {
@@ -92,11 +74,6 @@ export const LeagueDetails = () => {
       navigator.clipboard.writeText(leagueDetails.invite_code);
     }
   };
-
-  // const handleMemberClick = (member: Member) => {
-  //   setSelectedMember(member);
-  //   console.log("members", members);
-  // };
 
   return (
     <Box style={{ overflow: "scroll" }}>
@@ -179,20 +156,6 @@ export const LeagueDetails = () => {
           </Box>
         ))}
       </Box>
-
-      {/* <LeagueResultsTable members={members} /> */}
-
-      {/* {selectedMember && (
-        <Box>
-          <h2>Prediction for {selectedMember.profile.username}</h2>
-          <USMap
-            selectedStates={
-              selectedMember.profile.electoral_predictions || electoralVotes
-            }
-            setSelectedStates={() => {}}
-          />
-        </Box>
-      )} */}
     </Box>
   );
 };

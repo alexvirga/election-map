@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../../api/supabase";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
-  TextField,
-} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export const NewLeague = () => {

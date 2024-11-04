@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Countdown = () => {
   const targetDate = new Date("2024-11-05T18:00:00-05:00");

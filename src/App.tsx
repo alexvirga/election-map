@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthProtectedRoute from "./router/AuthProtectedRoute.tsx";
 import Providers from "./Providers.tsx";
 import NotFoundPage from "./pages/404Page.tsx";
-import AuthPage from "./pages/auth/AuthPage.tsx";
+
 import Dashboard from "./pages/Dashboard";
 import LeagueDetails from "./Components/LeagueDetails.tsx";
 import MainLayout from "./Components/Navigation/MainLayout.tsx";

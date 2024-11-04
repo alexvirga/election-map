@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../api/supabase";
 import LoadingPage from "../pages/LoadingPage";
 import { Session } from "@supabase/supabase-js";
-import { getProfile } from "../api/api";
 
 const SessionContext = createContext<{
   session: Session | null;
@@ -27,7 +26,7 @@ export const SessionProvider = ({ children }: Props) => {
   useEffect(() => {
     const handleAuthStateChange = async () => {
       const { data: authListener } = supabase.auth.onAuthStateChange(
-        async (event, session) => {
+        async (_, session) => {
           setSession(session);
 
           setIsLoading(false);

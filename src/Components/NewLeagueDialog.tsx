@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Button,
   TextField,
@@ -17,7 +16,7 @@ interface FormDialogProps {
 }
 
 const NewLeagueDialog = ({ open, handleClose }: FormDialogProps) => {
-  const [status, setStatus] = useState("");
+  const [, setStatus] = useState("");
   const [formData, setFormData] = useState<{
     name: string;
     buy_in: number | null;
@@ -37,7 +36,6 @@ const NewLeagueDialog = ({ open, handleClose }: FormDialogProps) => {
   };
 
   const handleSubmit = async () => {
-    console.log("Form submitted:", formData);
     setStatus("Creating league...");
 
     const generateInviteCode = () => {

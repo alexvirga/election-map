@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getProfile, updatePrediction } from "../api/api";
+import { useState, useEffect } from "react";
+import { getProfile } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import MyLeagues from "../Components/MyLeagues";
 import NewLeague from "../Components/CreateLeague/NewLeague";

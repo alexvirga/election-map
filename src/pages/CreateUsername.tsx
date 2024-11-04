@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { createProfile } from "../api/api";
 import { useSession } from "../context/SessionContext";
 import { useNavigate } from "react-router-dom";

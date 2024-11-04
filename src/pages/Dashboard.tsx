@@ -1,35 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import USMap from "../Components/Map/USMap";
 import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
 import { electoralVotes } from "../usStatesPathData";
-import Countdown from "../Components/Countdown";
 import { calculateTotals } from "../utils";
 import { getProfile, updatePrediction } from "../api/api";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  Button,
-  Divider,
-  useMediaQuery,
-  useTheme,
-  Snackbar,
-  Alert,
-} from "@mui/material";
+import { Button, Snackbar, Alert } from "@mui/material";
 import { useSession } from "../context/SessionContext";
 
 export const Dashboard = () => {
   const [selectedStates, setSelectedStates] = useState<{
     [key: string]: { electoral_allocation: number; party: number };
   }>(electoralVotes);
-  const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const { democratVotes, republicanVotes } = calculateTotals(selectedStates);
   const { session } = useSession();
@@ -40,10 +22,6 @@ export const Dashboard = () => {
       try {
         if (user) {
           const profile = await getProfile(user.id);
-
-          if (profile.username) {
-            setUsername(profile.username);
-          }
 
           if (profile.electoral_predictions) {
             setSelectedStates(profile.electoral_predictions);

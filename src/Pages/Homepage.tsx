@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import USMap from "../Components/Map/USMap";
-import {
-  usStatesPathData,
-  electoralVotes,
-  SelectedElectoralVotes,
-} from "../usStatesPathData";
-import { Session } from "@supabase/supabase-js";
+import { electoralVotes } from "../usStatesPathData";
+
 import { calculateTotals } from "../utils";
 import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
 import { predictionApi } from "../api/api";
-import { supabase } from "../api/supabase";
+
 import { useSession } from "../context/SessionContext";
 
 export const Homepage = () => {
   const [selectedStates, setSelectedStates] = useState<{
     [key: string]: { electoral_allocation: number; party: number };
   }>(electoralVotes);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const { democratVotes, republicanVotes } = calculateTotals(selectedStates);
   const { session } = useSession();
   const user = session?.user;
@@ -44,10 +40,7 @@ export const Homepage = () => {
   const handleCreatePrediction = async () => {
     try {
       if (user) {
-        const newPrediction = await predictionApi.createPrediction(
-          user.id,
-          selectedStates
-        );
+        await predictionApi.createPrediction(user.id, selectedStates);
         alert("Prediction created successfully!");
       }
     } catch (error) {

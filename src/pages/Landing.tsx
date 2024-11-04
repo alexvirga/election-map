@@ -1,26 +1,8 @@
-import { Link } from "react-router-dom";
-import { supabase } from "../api/supabase";
-import { useSession } from "../context/SessionContext";
-import { Navigate } from "react-router-dom";
 import { electoralVotes } from "../usStatesPathData";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  Button,
-  Divider,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Typography, Box, Divider } from "@mui/material";
 import AuthPage from "./auth/AuthPage";
 import USMap from "../Components/Map/USMap";
 import { calculateTotals } from "../utils";
@@ -32,12 +14,6 @@ const Landing = () => {
     [key: string]: { electoral_allocation: number; party: number };
   }>(electoralVotes);
   const { democratVotes, republicanVotes } = calculateTotals(selectedStates);
-
-  // const { session } = useSession();
-
-  // if (session?.user) {
-  //   return <Navigate to="/home" />;
-  // }
 
   return (
     <Box

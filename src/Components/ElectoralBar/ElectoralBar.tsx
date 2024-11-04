@@ -1,19 +1,3 @@
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  Button,
-  Divider,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-
 interface ElectoralBarProps {
   democratVotes: number;
   republicanVotes: number;
