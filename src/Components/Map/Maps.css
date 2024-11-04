@@ -19,6 +19,16 @@
   border-spacing: 0px 4px;
 }
 
+.state_extra {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 2px;
+}
+
 @media only screen and (max-width: 800px) {
   .small_state td {
     padding: 2px;

@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import {
   usStatesPathData,
   electoralVotes,
@@ -87,6 +88,72 @@ export const PlaceholderMap = ({ smallView }: USMapPlaceholderProps) => {
             </tbody>
           </table>
         </div>
+      )}
+      {!smallView && (
+        <Box style={{ display: "flex" }}>
+          <Box mr={2}>
+            <Typography> Maine </Typography>
+            <Box style={{ display: "flex" }}>
+              <Box
+                className="state_extra"
+                style={{ backgroundColor: "#d6d6d6" }}
+              >
+                2
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: "#d6d6d6",
+                }}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: "#d6d6d6",
+                }}
+              >
+                1
+              </Box>
+            </Box>
+          </Box>
+          <Box>
+            <Typography> Nebraska </Typography>
+            <Box style={{ display: "flex" }}>
+              <Box
+                className="state_extra"
+                style={{ backgroundColor: "#d6d6d6" }}
+              >
+                2
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: "#d6d6d6",
+                }}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: "#d6d6d6",
+                }}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: "#d6d6d6",
+                }}
+              >
+                1
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       )}
     </div>
   );

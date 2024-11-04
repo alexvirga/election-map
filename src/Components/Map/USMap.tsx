@@ -5,6 +5,7 @@ import {
   SelectedElectoralVotes,
 } from "../../usStatesPathData";
 import "./Maps.css";
+import { Box, Typography } from "@mui/material";
 
 interface USMapProps {
   setSelectedStates: (states: SelectedElectoralVotes) => void; // Updated to accept an argument
@@ -114,6 +115,79 @@ const USMap = ({
             </tbody>
           </table>
         </div>
+      )}
+      {!smallView && (
+        <Box style={{ display: "flex", justifyContent: "center" }}>
+          <Box mr={2}>
+            <Typography> Maine </Typography>
+            <Box style={{ display: "flex" }}>
+              <Box
+                className="state_extra"
+                style={{ backgroundColor: colors[selectedStates["ME"].party] }}
+                onClick={() => (!viewOnly ? handleStateClick("ME") : null)}
+              >
+                2
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: colors[selectedStates["ME_1"].party],
+                }}
+                onClick={() => (!viewOnly ? handleStateClick("ME_1") : null)}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: colors[selectedStates["ME_2"].party],
+                }}
+                onClick={() => (!viewOnly ? handleStateClick("ME_2") : null)}
+              >
+                1
+              </Box>
+            </Box>
+          </Box>
+          <Box>
+            <Typography> Nebraska </Typography>
+            <Box style={{ display: "flex" }}>
+              <Box
+                className="state_extra"
+                style={{ backgroundColor: colors[selectedStates["NE"].party] }}
+                onClick={() => (!viewOnly ? handleStateClick("NE") : null)}
+              >
+                2
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: colors[selectedStates["NE_1"].party],
+                }}
+                onClick={() => (!viewOnly ? handleStateClick("NE_1") : null)}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: colors[selectedStates["NE_2"].party],
+                }}
+                onClick={() => (!viewOnly ? handleStateClick("NE_2") : null)}
+              >
+                1
+              </Box>
+              <Box
+                className="state_extra"
+                style={{
+                  backgroundColor: colors[selectedStates["NE_3"].party],
+                }}
+                onClick={() => (!viewOnly ? handleStateClick("NE_3") : null)}
+              >
+                1
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       )}
     </div>
   );

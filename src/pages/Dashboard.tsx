@@ -19,6 +19,8 @@ import {
   Divider,
   useMediaQuery,
   useTheme,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { useSession } from "../context/SessionContext";
 
@@ -28,6 +30,7 @@ export const Dashboard = () => {
   }>(electoralVotes);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const { democratVotes, republicanVotes } = calculateTotals(selectedStates);
   const { session } = useSession();
   const user = session?.user;
@@ -60,7 +63,8 @@ export const Dashboard = () => {
     try {
       if (user) {
         await updatePrediction(user.id, selectedStates);
-        alert("Prediction created successfully!");
+        setShowSuccessMessage(true);
+        setTimeout(() => setShowSuccessMessage(false), 3000); // Hide after 3 seconds
       }
     } catch (error) {
       console.error("Error creating prediction:", error);
@@ -73,6 +77,34 @@ export const Dashboard = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <div style={{ maxWidth: "920px", width: "100%", padding: "10px" }}>
+        {showSuccessMessage && (
+          <Snackbar
+            open={showSuccessMessage}
+            autoHideDuration={3000}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
+            <Alert
+              severity="success"
+              variant="filled"
+              sx={{ color: "white", fontWeight: 400 }}
+            >
+              Selection saved!
+            </Alert>
+          </Snackbar>
+        )}
+        <div
+          style={{
+            backgroundColor: "#fff3cd",
+            color: "#856404",
+            padding: "10px",
+            textAlign: "center",
+            fontSize: "16px",
+            fontWeight: "bold",
+            borderBottom: "1px solid #ffeeba",
+          }}
+        >
+          Your pick will remain hidden until 6 PM on Tuesday.
+        </div>
         <ElectoralBar
           democratVotes={democratVotes}
           republicanVotes={republicanVotes}
