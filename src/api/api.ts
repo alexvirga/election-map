@@ -41,10 +41,9 @@ export const ensureProfileExists = async (user: string) => {
 
 export const createProfile = async (id: string, username: string) => {
   try {
-    // Insert a new row into the profiles table
     const { data, error } = await supabase
       .from("profile")
-      .insert([{ id, username }]);
+      .upsert([{ id, username }], { onConflict: "id" });
 
     if (error) {
       console.error("Error creating profile:", error.message);

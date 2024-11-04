@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import LeagueDetails from "./Components/LeagueDetails.tsx";
 import MainLayout from "./Components/Navigation/MainLayout.tsx";
 import Landing from "./pages/Landing.tsx";
+import CheckProfile from "./router/CheckProfile.tsx";
 function App() {
   return (
     <Providers>
@@ -17,20 +18,23 @@ function App() {
           <Route
             path="/home"
             element={
-              <MainLayout>
-                <Dashboard />
-              </MainLayout>
+              <CheckProfile>
+                <MainLayout>
+                  <Dashboard />
+                </MainLayout>
+              </CheckProfile>
             }
           />
           <Route
             path="/league/:id"
             element={
-              <MainLayout>
-                <LeagueDetails />
-              </MainLayout>
+              <CheckProfile>
+                <MainLayout>
+                  <LeagueDetails />
+                </MainLayout>
+              </CheckProfile>
             }
           />
-          {/* Add other protected routes as needed */}
         </Route>
       </Routes>
     </Providers>
