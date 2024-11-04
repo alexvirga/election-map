@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { supabase } from "../../api/supabase";
+import { Button, TextField } from "@mui/material";
 
 export const JoinLeague = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setStatus("Joining league...");
 
     // Get the current user session
@@ -72,18 +72,16 @@ export const JoinLeague = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Invite Code:
-          <input
-            type="text"
-            value={inviteCode}
-            onChange={(e) => setInviteCode(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Join League</button>
-      </form>
+      <TextField
+        type="text"
+        label="Invite Code"
+        value={inviteCode}
+        onChange={(e) => setInviteCode(e.target.value)}
+        required
+      />
+
+      <Button onClick={handleSubmit}>Join League</Button>
+
       {status && <p>{status}</p>}
     </div>
   );

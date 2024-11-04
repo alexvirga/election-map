@@ -1,0 +1,27 @@
+.small_state td {
+  padding: 5px;
+  font-size: 0.8em;
+}
+
+.small_state {
+  color: white;
+  font-weight: 600;
+}
+
+.table-container {
+  position: absolute;
+  top: 25%;
+  right: 3%;
+  z-index: 10;
+}
+
+.table {
+  border-spacing: 0px 4px;
+}
+
+@media only screen and (max-width: 500px) {
+  .small_state td {
+    padding: 2px;
+    font-size: 9px;
+  }
+}

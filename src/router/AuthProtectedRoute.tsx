@@ -9,8 +9,8 @@ const AuthProtectedRoute = () => {
     return <Navigate to="/" />;
   }
   return (
-    <div style={{ width: "100%" }}>
-      <Outlet />;
+    <div style={{ width: "100%", overflow: "scroll" }}>
+      <Outlet />
     </div>
   );
 };

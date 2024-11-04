@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import USMap from "../Components/Map/USMap";
-import { electoralVotes } from "../usStatesPathData";
-
-import { calculateTotals } from "../utils";
 import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
+import { electoralVotes } from "../usStatesPathData";
+import Countdown from "../Components/Countdown";
+import { calculateTotals } from "../utils";
 import { getProfile, updatePrediction } from "../api/api";
 import { useSession } from "../context/SessionContext";
 
@@ -57,17 +57,20 @@ export const Dashboard = () => {
   return (
     <div
       className="dashboard"
-      style={{ display: "flex", flexDirection: "row" }}
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div style={{ maxWidth: "980px", width: "100%", padding: "10px" }}>
+      <Countdown />
+      <div style={{ maxWidth: "920px", width: "100%", padding: "10px" }}>
         <ElectoralBar
           democratVotes={democratVotes}
           republicanVotes={republicanVotes}
         />
-        <USMap
-          setSelectedStates={setSelectedStates}
-          selectedStates={selectedStates}
-        />
+        <div style={{ maxWidth: "920px", margin: "auto" }}>
+          <USMap
+            setSelectedStates={setSelectedStates}
+            selectedStates={selectedStates}
+          />
+        </div>
         <button onClick={handleCreatePrediction} style={{ marginTop: "20px" }}>
           Save
         </button>

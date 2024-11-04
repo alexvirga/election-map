@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import { supabase } from "./api/supabase";
 import { useSession } from "./context/SessionContext";
 import CreateUserName from "./pages/CreateUsername";
+import AppDrawer from "./Components/AppDrawer";
 
 function App() {
   const { session } = useSession();

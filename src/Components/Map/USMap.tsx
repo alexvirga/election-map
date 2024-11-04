@@ -4,15 +4,27 @@ import {
   electoralVotes,
   SelectedElectoralVotes,
 } from "../../usStatesPathData";
+import "./Maps.css";
 
 interface USMapProps {
   setSelectedStates: (states: SelectedElectoralVotes) => void; // Updated to accept an argument
   selectedStates: SelectedElectoralVotes;
+  viewOnly?: boolean;
 }
+type StateAbbreviation = keyof typeof electoralVotes;
 
 const colors = ["#d6d6d6", "#1375b7", "#c93135"];
+const smallStates: StateAbbreviation[] = [
+  "MA",
+  "RI",
+  "CT",
+  "NJ",
+  "DE",
+  "MD",
+  "DC",
+];
 
-const USMap = ({ setSelectedStates, selectedStates }: USMapProps) => {
+const USMap = ({ setSelectedStates, selectedStates, viewOnly }: USMapProps) => {
   const handleStateClick = (abbreviation: string) => {
     const currentParty = selectedStates[abbreviation].party;
     const nextParty = (currentParty + 1) % colors.length;
@@ -30,7 +42,7 @@ const USMap = ({ setSelectedStates, selectedStates }: USMapProps) => {
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <svg width="100%" height="100%" viewBox="50 0 1000 600">
         {usStatesPathData.map((state) => (
           <>
@@ -73,6 +85,26 @@ const USMap = ({ setSelectedStates, selectedStates }: USMapProps) => {
           </>
         ))}
       </svg>
+      <div className="table-container">
+        <table className="table">
+          <tbody>
+            {smallStates.map((state) => (
+              <tr
+                key={state}
+                style={{
+                  backgroundColor: colors[selectedStates[state].party],
+                  cursor: "pointer",
+                }}
+                className="small_state"
+                onClick={() => handleStateClick(state)}
+              >
+                <td>{state}</td>
+                <td>{electoralVotes[state].electoral_allocation}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

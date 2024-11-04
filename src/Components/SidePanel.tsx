@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProfile, updatePrediction } from "../api/api";
-
+import { useNavigate } from "react-router-dom";
 import MyLeagues from "../Components/MyLeagues";
 import NewLeague from "../Components/CreateLeague/NewLeague";
 import JoinLeague from "../Components/CreateLeague/JoinLeague";
@@ -11,6 +11,7 @@ export const SidePanel = () => {
 
   const { session } = useSession();
   const user = session?.user;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -42,7 +43,7 @@ export const SidePanel = () => {
         textAlign: "left",
       }}
     >
-      <div>VotePot</div>
+      <div onClick={() => navigate(`/`)}>VotePot</div>
       <div> {username} </div>
       <MyLeagues />
       <JoinLeague />
