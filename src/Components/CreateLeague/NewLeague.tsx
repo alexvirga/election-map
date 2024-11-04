@@ -101,9 +101,10 @@ export const NewLeague = () => {
     if (userLeagueError) {
       setStatus(`Error adding user to league: ${userLeagueError.message}`);
     } else {
+      setStatus("");
+      navigate(`/league/${newLeague.invite_code}`);
+      setFormData({ name: "", buy_in: null });
     }
-
-    navigate(`/league/${newLeague.invite_code}`);
   };
 
   return (
@@ -115,6 +116,7 @@ export const NewLeague = () => {
         type="text"
         variant="outlined"
         name="name"
+        defaultValue={null}
         value={formData.name}
         error={!!errors.name}
         helperText={errors.name}
