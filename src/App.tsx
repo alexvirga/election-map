@@ -1,39 +1,39 @@
-import { useState, useEffect } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import AuthProtectedRoute from "./router/AuthProtectedRoute.tsx";
+import Providers from "./Providers.tsx";
+import NotFoundPage from "./pages/404Page.tsx";
+import AuthPage from "./pages/auth/AuthPage.tsx";
 import Dashboard from "./pages/Dashboard";
-import { supabase } from "./api/supabase";
-import { useSession } from "./context/SessionContext";
-import CreateUserName from "./pages/CreateUsername";
-import AppDrawer from "./Components/AppDrawer";
-
+import LeagueDetails from "./Components/LeagueDetails.tsx";
+import MainLayout from "./Components/Navigation/MainLayout.tsx";
 function App() {
-  const { session } = useSession();
-  const [profile, setProfile] = useState(null);
-  const user = session?.user;
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        if (user) {
-          const { data, error } = await supabase
-            .from("profile")
-            .select(`username`)
-            .eq("id", user.id)
-            .single();
-          if (data) {
-            setProfile(data.username);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching predictions:", error);
-      } finally {
-        // setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
-  return <>{profile ? <Dashboard /> : <CreateUserName />}</>;
+  return (
+    <Providers>
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route element={<AuthProtectedRoute />}>
+          <Route
+            path="/home"
+            element={
+              <MainLayout>
+                <Dashboard />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/league/:id"
+            element={
+              <MainLayout>
+                <LeagueDetails />
+              </MainLayout>
+            }
+          />
+          {/* Add other protected routes as needed */}
+        </Route>
+      </Routes>
+    </Providers>
+  );
 }
 
 export default App;

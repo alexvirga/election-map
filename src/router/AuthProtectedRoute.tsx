@@ -5,7 +5,6 @@ import { useSession } from "../context/SessionContext";
 const AuthProtectedRoute = () => {
   const { session } = useSession();
   if (!session) {
-    // Redirect to the auth page if not authenticated
     return <Navigate to="/" />;
   }
   return (

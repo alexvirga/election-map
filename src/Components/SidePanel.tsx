@@ -37,7 +37,7 @@ export const SidePanel = () => {
       style={{
         height: "100vh",
         backgroundColor: "white",
-        width: "300px",
+        width: "220px",
         borderRight: "1px solid black",
         padding: "20px",
         textAlign: "left",

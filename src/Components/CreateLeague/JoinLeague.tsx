@@ -5,8 +5,26 @@ import { Button, TextField } from "@mui/material";
 export const JoinLeague = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState<{ inviteCode?: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { inviteCode?: string } = {};
+
+    if (!inviteCode.trim()) {
+      newErrors.inviteCode = "Invite code is required.";
+    } else if (inviteCode.length !== 6) {
+      newErrors.inviteCode = "Invite code must be 6 characters.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async () => {
+    if (!validateForm()) {
+      return;
+    }
+
     setStatus("Joining league...");
 
     // Get the current user session
@@ -20,7 +38,6 @@ export const JoinLeague = () => {
 
     const userId = session.user.id;
 
-    // Check if the league with the given invite code exists
     const { data: leagueData, error: leagueError } = await supabase
       .from("leagues")
       .select("id")
@@ -78,9 +95,13 @@ export const JoinLeague = () => {
         value={inviteCode}
         onChange={(e) => setInviteCode(e.target.value)}
         required
+        error={!!errors.inviteCode}
+        helperText={errors.inviteCode}
       />
 
-      <Button onClick={handleSubmit}>Join League</Button>
+      <Button color="inherit" onClick={handleSubmit}>
+        Join League
+      </Button>
 
       {status && <p>{status}</p>}
     </div>

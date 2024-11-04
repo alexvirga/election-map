@@ -1,6 +1,17 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../api/supabase";
 import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+  TextField,
+  Box,
+  Typography,
+} from "@mui/material";
 
 type League = {
   league_id: number;
@@ -45,20 +56,20 @@ export const MyLeagues = () => {
   }, []);
 
   return (
-    <div>
+    <Box>
       <h4>My Leagues</h4>
       {status && <p>{status}</p>}
 
       {leagues.map((league) => (
-        <div
+        <Typography
           key={league.league_id}
           onClick={() => navigate(`/league/${league.league_id}`)}
-          className="text-blue-500 underline"
+          style={{ cursor: "pointer", width: "fit-content" }}
         >
           {league.leagues.name}
-        </div>
+        </Typography>
       ))}
-    </div>
+    </Box>
   );
 };
 

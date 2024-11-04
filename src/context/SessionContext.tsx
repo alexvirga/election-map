@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../api/supabase";
 import LoadingPage from "../pages/LoadingPage";
 import { Session } from "@supabase/supabase-js";
-// import { createProfileIfNotExists } from "../api/api"; // Import the function
 import { getProfile } from "../api/api";
 
 const SessionContext = createContext<{

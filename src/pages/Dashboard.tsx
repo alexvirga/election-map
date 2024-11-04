@@ -17,8 +17,6 @@ export const Dashboard = () => {
   const { session } = useSession();
   const user = session?.user;
 
-  console.log(session);
-
   useEffect(() => {
     const fetchProfile = async () => {
       try {

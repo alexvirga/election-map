@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { supabase } from "../../api/supabase";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -9,14 +8,16 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import { supabase } from "../api/supabase";
 import { useNavigate } from "react-router-dom";
 
-export const NewLeague = () => {
+interface FormDialogProps {
+  open: boolean;
+  handleClose: () => void;
+}
+
+const JoinLeagueDialog = ({ open, handleClose }: FormDialogProps) => {
   const [status, setStatus] = useState("");
-  const [errors, setErrors] = useState<{
-    name?: string;
-    buy_in?: string;
-  }>({});
   const [formData, setFormData] = useState<{
     name: string;
     buy_in: number | null;
@@ -24,6 +25,7 @@ export const NewLeague = () => {
     name: "",
     buy_in: null,
   });
+
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,29 +36,8 @@ export const NewLeague = () => {
     }));
   };
 
-  const validateForm = () => {
-    const newErrors: { name?: string; buy_in?: string } = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "League name is required.";
-    }
-
-    if (
-      formData.buy_in !== null &&
-      (isNaN(formData.buy_in) || formData.buy_in < 0)
-    ) {
-      newErrors.buy_in = "Buy-in must be a positive number.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = async () => {
-    if (!validateForm()) {
-      return;
-    }
-
+    console.log("Form submitted:", formData);
     setStatus("Creating league...");
 
     const generateInviteCode = () => {
@@ -76,7 +57,7 @@ export const NewLeague = () => {
     const inviteCode = generateInviteCode();
 
     const { name, buy_in } = formData;
-
+    // Insert the new league
     const { data: leagueData, error: leagueError } = await supabase
       .from("leagues")
       .insert([
@@ -111,42 +92,47 @@ export const NewLeague = () => {
     } else {
     }
 
+    handleClose();
     navigate(`/league/${newLeague.id}`);
   };
 
   return (
-    <div>
-      <TextField
-        autoFocus
-        margin="dense"
-        label="League Name"
-        type="text"
-        variant="outlined"
-        name="name"
-        value={formData.name}
-        error={!!errors.name}
-        helperText={errors.name}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        margin="dense"
-        label="Buy-In (Optional)"
-        type="number"
-        variant="outlined"
-        name="buy_in"
-        value={formData.buy_in}
-        error={!!errors.buy_in}
-        helperText={errors.buy_in}
-        onChange={handleChange}
-        required={false}
-      />
-      <Button onClick={handleSubmit} color="inherit">
-        Create
-      </Button>
-      {status && <p>{status}</p>}
-    </div>
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>New League</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          label="League Name"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          label="Buy-In (Optional)"
+          type="number"
+          fullWidth
+          variant="outlined"
+          name="buy_in"
+          value={formData.buy_in}
+          onChange={handleChange}
+          required={false}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="secondary">
+          Cancel
+        </Button>
+        <Button onClick={handleSubmit} color="primary">
+          Create
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
-export default NewLeague;
+export default JoinLeagueDialog;
