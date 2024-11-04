@@ -101,42 +101,60 @@ export const LeagueDetails = () => {
   return (
     <Box style={{ overflow: "scroll" }}>
       <Box>
-        <Typography>
-          League Name: <b> {leagueDetails?.name}</b>
-        </Typography>
-        <Typography>
-          Invite Code: <b>{leagueDetails?.invite_code}</b>
-          <Tooltip title="Copy to clipboard">
-            <IconButton
-              onClick={handleCopyInviteCode}
-              aria-label="copy invite code"
-              style={{ padding: "0px", marginLeft: "5px" }}
-            >
-              <ContentCopyIcon />
-            </IconButton>
-          </Tooltip>
-        </Typography>
-        {leagueDetails?.buy_in && (
-          <>
-            <Typography>
-              Buy-In: <b> ${leagueDetails?.buy_in}</b>
-            </Typography>
-            <Typography>
-              Pot: <b> ${leagueDetails?.buy_in * members.length}</b>
-            </Typography>
-          </>
-        )}
+        <Box>
+          <Typography>
+            League Name: <b> {leagueDetails?.name}</b>
+          </Typography>
+          <Typography>
+            Invite Code: <b>{leagueDetails?.invite_code}</b>
+            <Tooltip title="Copy to clipboard">
+              <IconButton
+                onClick={handleCopyInviteCode}
+                aria-label="copy invite code"
+                style={{ padding: "0px", marginLeft: "5px" }}
+              >
+                <ContentCopyIcon />
+              </IconButton>
+            </Tooltip>
+          </Typography>
+          {leagueDetails?.buy_in && (
+            <>
+              <Typography>
+                Buy-In: <b> ${leagueDetails?.buy_in}</b>
+              </Typography>
+              <Typography>
+                Pot: <b> ${leagueDetails?.buy_in * members.length}</b>
+              </Typography>
+            </>
+          )}
+        </Box>
       </Box>
-      <Divider sx={{ width: "60%", margin: "24px 0px" }} />
+      <Divider sx={{ width: "60%", margin: "24px auto" }} />
+      <Box>
+        <div
+          style={{
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            padding: "10px",
+            textAlign: "center",
+            fontSize: "16px",
+            fontWeight: "bold",
+            borderBottom: "1px solid #f5c6cb",
+          }}
+        >
+          Picks from others will remain hidden until 6 PM on Tuesday.
+        </div>
+      </Box>
       {/* {status && <p>{status}</p>} */}
 
       <Box>
         <Box style={{ maxWidth: "700px", margin: "auto" }}>
           <PlaceholderMap />
         </Box>
-        <LeagueLeaderboard members={members} />
       </Box>
-
+      <Divider sx={{ width: "60%", margin: "24px auto" }} />
+      <LeagueLeaderboard members={members} />
+      <Divider sx={{ width: "60%", margin: "24px auto" }} />
       <Box
         style={{
           display: "grid",
@@ -158,7 +176,6 @@ export const LeagueDetails = () => {
             ) : (
               <PlaceholderMap smallView />
             )}
-            <Box>Score: </Box>
           </Box>
         ))}
       </Box>

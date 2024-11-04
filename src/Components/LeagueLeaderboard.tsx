@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import { SelectedElectoralVotes } from "../types";
-import { TableRow } from "@mui/material";
+import { Skeleton, TableRow, Box, Typography } from "@mui/material";
 
 type Member = {
   user_id: string;
@@ -18,16 +18,15 @@ interface LeagueLeaderboardProps {
 }
 
 export const LeagueLeaderboard = ({ members }: LeagueLeaderboardProps) => {
-  console.log("leaderboard");
   return (
-    <div>
-      <h4> Leaderboard </h4>
+    <Box>
+      <Typography> Leaderboard </Typography>
       <Table>
         {members.map((member) => (
-          <TableRow>{member.profile.username}</TableRow>
+          <Skeleton animation={false} sx={{ maxWidth: "300px" }} />
         ))}
       </Table>
-    </div>
+    </Box>
   );
 };
 

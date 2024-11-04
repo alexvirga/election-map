@@ -57,7 +57,9 @@ export const MyLeagues = () => {
 
   return (
     <Box>
-      <Typography variant="h4">My Leagues</Typography>
+      <Typography variant="h6" mb={1}>
+        My Leagues
+      </Typography>
       {status && <p>{status}</p>}
 
       {leagues.map((league) => (
