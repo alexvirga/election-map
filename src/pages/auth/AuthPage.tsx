@@ -64,6 +64,7 @@ const AuthPage = () => {
                 required={true}
                 onChange={(e) => setEmail(e.target.value)}
                 size="small"
+                sx={{ backgroundColor: "#ffff" }}
               />
             </Box>
             <Box>

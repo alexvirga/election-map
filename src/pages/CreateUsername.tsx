@@ -63,7 +63,7 @@ export const CreateUserName = () => {
       <Box
         sx={{
           backgroundColor: "white",
-          flex: 4,
+          flex: 1,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -119,7 +119,6 @@ export const CreateUserName = () => {
 
       <Box
         sx={{
-          background: "linear-gradient(135deg, #d6d6d6, #1375b7, #c93135)",
           flex: 3,
         }}
       />

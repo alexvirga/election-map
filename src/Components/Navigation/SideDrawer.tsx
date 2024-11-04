@@ -89,12 +89,14 @@ const SideDrawer = () => {
         variant={isMobile ? "temporary" : "permanent"}
         open={isDrawerOpen}
         onClose={handleDrawerToggle}
+        elevation={2}
         sx={{
           "& .MuiDrawer-paper": {
             width: 250,
             boxSizing: "border-box",
-            paddingTop: "70px",
-            backgroundColor: "white", // Keep the rest of the drawer light
+            paddingTop: "65px",
+            backgroundColor: "white",
+            borderRight: "none",
           },
         }}
       >
@@ -103,8 +105,10 @@ const SideDrawer = () => {
           sx={{
             width: "100%",
             padding: 2,
-            backgroundColor: "#1c1c1c", // Dark theme for this specific section
-            color: "#ffffff", // Light text for contrast
+            backgroundColor: "#1c1c1c",
+            color: "#ffffff",
+            boxShadow:
+              "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
           }}
         >
           <Typography
