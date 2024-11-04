@@ -16,7 +16,6 @@ import {
 import { useSession } from "../../context/SessionContext";
 import { getProfile } from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import icon from "../../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import JoinLeague from "../CreateLeague/JoinLeague";
 import MyLeagues from "../MyLeagues";
@@ -62,7 +61,6 @@ const SideDrawer = () => {
           borderBottom: "4px solid #1976d2",
           backgroundColor: "white",
           zIndex: theme.zIndex.drawer + 1, // Ensure it stays above the drawer
-
           color: "inherit",
         }}
       >
@@ -87,7 +85,6 @@ const SideDrawer = () => {
           <Countdown />
         </Toolbar>
       </AppBar>
-
       <Drawer
         variant={isMobile ? "temporary" : "permanent"}
         open={isDrawerOpen}
@@ -97,25 +94,34 @@ const SideDrawer = () => {
             width: 250,
             boxSizing: "border-box",
             paddingTop: "70px",
+            backgroundColor: "white", // Keep the rest of the drawer light
           },
         }}
       >
-        <Box sx={{ width: "100%", padding: 2, backgroundColor: "white" }}>
+        <Box
+          className="drawer-contents"
+          sx={{
+            width: "100%",
+            padding: 2,
+            backgroundColor: "#1c1c1c", // Dark theme for this specific section
+            color: "#ffffff", // Light text for contrast
+          }}
+        >
           <Typography
             variant="h6"
-            sx={{ marginBottom: 2, cursor: "pointer" }}
+            sx={{ marginBottom: 2, cursor: "pointer", color: "#ffffff" }}
             onClick={() => navigate(`/`)}
           >
             {username}
           </Typography>
-          <Divider sx={{ marginBottom: 2 }} />
+          <Divider sx={{ marginBottom: 2, borderColor: "#494949" }} />
           <MyLeagues />
-          <Divider sx={{ marginY: 2 }} />
+          <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
           <JoinLeague />
-          <Divider sx={{ marginY: 2 }} />
-          <Typography> Create New League </Typography>
+          <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
+          <Typography sx={{ color: "#ffffff" }}> Create New League </Typography>
           <NewLeague />
-          <Divider sx={{ marginY: 2 }} />
+          <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
         </Box>
         <Button
           color="inherit"
@@ -125,14 +131,21 @@ const SideDrawer = () => {
           Sign Out
         </Button>
 
-        <Box sx={{ display: "flex", marginTop: "auto" }}>
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "auto",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Typography
             variant="caption"
             sx={{
               textAlign: "center",
               width: "100%",
               padding: 1,
-              color: "#757575", // Light gray color for subtlety
+              color: "#757575", // Light gray for subtlety
             }}
           >
             Created by{" "}
@@ -154,7 +167,7 @@ const SideDrawer = () => {
             </a>
           </Typography>
         </Box>
-      </Drawer>
+      </Drawer>{" "}
     </Box>
   );
 };

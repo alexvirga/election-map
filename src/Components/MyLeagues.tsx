@@ -47,17 +47,30 @@ export const MyLeagues = () => {
   }, []);
 
   return (
-    <Box minHeight={80}>
-      <Typography variant="h6" mb={1}>
+    <Box
+      minHeight={80}
+      sx={{
+        color: "#ffffff",
+      }}
+    >
+      <Typography variant="h6" mb={1} sx={{ color: "#ffffff" }}>
         My Leagues
       </Typography>
-      {status && <p>{status}</p>}
+      {status && <Typography sx={{ color: "#ff4d4d" }}>{status}</Typography>}
 
       {leagues.map((league) => (
         <Typography
           key={league.league_id}
           onClick={() => navigate(`/league/${league.leagues.invite_code}`)}
-          style={{ cursor: "pointer", width: "fit-content" }}
+          sx={{
+            cursor: "pointer",
+            color: "#b3b3b3", // Light gray for clickable items
+            "&:hover": {
+              color: "#ffffff",
+            },
+            width: "fit-content",
+            marginBottom: 1,
+          }}
           variant="body2"
         >
           {league.leagues.name}

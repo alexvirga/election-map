@@ -116,13 +116,33 @@ export const NewLeague = () => {
         type="text"
         variant="outlined"
         name="name"
-        defaultValue={null}
         value={formData.name}
         error={!!errors.name}
         helperText={errors.name}
         onChange={handleChange}
         required
         size="small"
+        sx={{
+          input: { color: "#ffffff" },
+          label: {
+            color: "#b3b3b3",
+            "&.Mui-focused": {
+              color: "#ffffff", // Ensure the label stays white when focused
+            },
+          },
+          backgroundColor: "#333333",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "#555555",
+            },
+            "&:hover fieldset": {
+              borderColor: "#777777",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#ffffff",
+            },
+          },
+        }}
       />
       <TextField
         margin="dense"
@@ -135,12 +155,41 @@ export const NewLeague = () => {
         helperText={errors.buy_in}
         onChange={handleChange}
         size="small"
-        required={false}
+        sx={{
+          input: { color: "#ffffff" },
+          label: {
+            color: "#b3b3b3",
+            "&.Mui-focused": {
+              color: "#ffffff", // Ensure the label stays white when focused
+            },
+          },
+          backgroundColor: "#333333",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "#555555",
+            },
+            "&:hover fieldset": {
+              borderColor: "#777777",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#ffffff",
+            },
+          },
+        }}
       />
-      <Button onClick={handleSubmit} color="inherit">
+      <Button
+        onClick={handleSubmit}
+        color="inherit"
+        sx={{
+          backgroundColor: "#444",
+          color: "#ffffff",
+          marginTop: 2,
+          "&:hover": { backgroundColor: "#555" },
+        }}
+      >
         Create
       </Button>
-      {status && <p>{status}</p>}
+      {status && <p style={{ color: "#ff4d4d", marginTop: 2 }}>{status}</p>}
     </div>
   );
 };

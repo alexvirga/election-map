@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../../api/supabase";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "../../context/SessionContext";
 
@@ -92,14 +92,51 @@ export const JoinLeague = () => {
         required
         error={!!errors.inviteCode}
         helperText={errors.inviteCode}
-        size={"small"}
+        size="small"
+        sx={{
+          input: { color: "#ffffff" },
+          label: {
+            color: "#b3b3b3",
+            "&.Mui-focused": {
+              color: "#ffffff", // Ensure the label stays white when focused
+            },
+          },
+          backgroundColor: "#333333",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "#555555",
+            },
+            "&:hover fieldset": {
+              borderColor: "#777777",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#ffffff",
+            },
+          },
+        }}
       />
 
-      <Button color="inherit" onClick={handleSubmit}>
+      <Button
+        color="inherit"
+        onClick={handleSubmit}
+        sx={{
+          backgroundColor: "#444",
+          color: "#ffffff",
+          marginTop: 2,
+          "&:hover": { backgroundColor: "#555" },
+        }}
+      >
         Join League
       </Button>
 
-      {status && <p>{status}</p>}
+      {status && (
+        <Typography
+          variant="body2"
+          style={{ color: "#ff4d4d", marginTop: "5px" }}
+        >
+          {status}
+        </Typography>
+      )}
     </div>
   );
 };
