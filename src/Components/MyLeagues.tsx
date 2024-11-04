@@ -7,6 +7,7 @@ type League = {
   league_id: number;
   leagues: {
     name: string;
+    invite_code: string;
   };
 };
 
@@ -31,7 +32,7 @@ export const MyLeagues = () => {
 
       const { data, error } = await supabase
         .from("user_leagues")
-        .select("league_id, leagues(name)")
+        .select("league_id, leagues(name, invite_code)")
         .eq("user_id", userId);
 
       if (error) {
@@ -55,7 +56,7 @@ export const MyLeagues = () => {
       {leagues.map((league) => (
         <Typography
           key={league.league_id}
-          onClick={() => navigate(`/league/${league.league_id}`)}
+          onClick={() => navigate(`/league/${league.leagues.invite_code}`)}
           style={{ cursor: "pointer", width: "fit-content" }}
         >
           {league.leagues.name}

@@ -103,7 +103,7 @@ export const NewLeague = () => {
     } else {
     }
 
-    navigate(`/league/${newLeague.id}`);
+    navigate(`/league/${newLeague.invite_code}`);
   };
 
   return (

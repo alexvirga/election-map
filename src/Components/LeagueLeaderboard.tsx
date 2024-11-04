@@ -20,8 +20,8 @@ export const LeagueLeaderboard = ({ members }: LeagueLeaderboardProps) => {
     <Box>
       <Typography> Leaderboard </Typography>
       <Table>
-        {members.map(() => (
-          <Skeleton animation={false} sx={{ maxWidth: "300px" }} />
+        {members.map((_, idx) => (
+          <Skeleton key={idx} animation={false} sx={{ maxWidth: "300px" }} />
         ))}
       </Table>
     </Box>

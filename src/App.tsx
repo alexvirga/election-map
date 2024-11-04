@@ -26,7 +26,7 @@ function App() {
             }
           />
           <Route
-            path="/league/:id"
+            path="/league/:invite_code"
             element={
               <CheckProfile>
                 <MainLayout>

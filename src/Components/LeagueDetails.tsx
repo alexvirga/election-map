@@ -7,6 +7,7 @@ import { Divider, Box, Typography, Tooltip, IconButton } from "@mui/material";
 import PlaceholderMap from "./Map/PlaceholderMap";
 import LeagueLeaderboard from "./LeagueLeaderboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
 type Member = {
   user_id: string;
   profile: {
@@ -14,6 +15,7 @@ type Member = {
     electoral_predictions: SelectedElectoralVotes;
   };
 };
+
 type LeagueDetails = {
   id: number;
   createdAt: string;
@@ -22,52 +24,53 @@ type LeagueDetails = {
   buy_in?: number | null;
   owner: string;
 };
+
 export const LeagueDetails = () => {
-  const { id: leagueId } = useParams<{ id: string }>();
+  const { invite_code } = useParams<{ invite_code: string }>();
   const [members, setMembers] = useState<Member[]>([]);
   const [leagueDetails, setLeagueDetails] = useState<LeagueDetails>();
 
   const [, setStatus] = useState("");
 
   useEffect(() => {
-    if (!leagueId) {
-      setStatus("Error: League ID is missing");
-      console.error("League ID is undefined or missing.");
+    if (!invite_code) {
+      setStatus("Error: Invite code is missing");
+      console.error("Invite code is undefined or missing.");
       return;
     }
 
-    const fetchMembers = async () => {
+    const fetchLeagueDetails = async () => {
       setStatus("Loading...");
-      const { data, error } = await supabase
-        .from("user_leagues")
-        .select("user_id, profile(username, electoral_predictions )")
-        .eq("league_id", leagueId);
+      const { data: leagueData, error: leagueError } = await supabase
+        .from("leagues")
+        .select("*")
+        .eq("invite_code", invite_code)
+        .single();
 
-      if (error) {
-        setStatus(`Error fetching members: ${error.message}`);
+      if (leagueError) {
+        setStatus(`Error fetching league: ${leagueError.message}`);
+        return;
       } else {
-        setMembers(data as unknown as Member[]);
+        setLeagueDetails(leagueData);
+        setStatus("");
+      }
+
+      // Fetch members after ensuring the league exists
+      const { data: memberData, error: memberError } = await supabase
+        .from("user_leagues")
+        .select("user_id, profile(username, electoral_predictions)")
+        .eq("league_id", leagueData.id);
+
+      if (memberError) {
+        setStatus(`Error fetching members: ${memberError.message}`);
+      } else {
+        setMembers(memberData as unknown as Member[]);
         setStatus("");
       }
     };
 
-    const fetchLeagueDetails = async () => {
-      const { data, error } = await supabase
-        .from("leagues")
-        .select("*")
-        .eq("id", leagueId)
-        .single();
-
-      if (error) {
-        setStatus(`Error fetching league: ${error.message}`);
-      } else {
-        setLeagueDetails(data);
-      }
-    };
     fetchLeagueDetails();
-
-    fetchMembers();
-  }, [leagueId]);
+  }, [invite_code]);
 
   const handleCopyInviteCode = () => {
     if (leagueDetails?.invite_code) {
@@ -140,8 +143,8 @@ export const LeagueDetails = () => {
           placeItems: "center",
         }}
       >
-        {members.map((member) => (
-          <Box style={{ width: "200px" }}>
+        {members.map((member, idx) => (
+          <Box style={{ width: "200px" }} key={idx}>
             <h4> {member.profile.username} </h4>
             {member.profile.electoral_predictions ? (
               <USMap
