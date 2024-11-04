@@ -46,7 +46,7 @@ export const MyLeagues = () => {
   }, []);
 
   return (
-    <Box>
+    <Box minHeight={80}>
       <Typography variant="h6" mb={1}>
         My Leagues
       </Typography>

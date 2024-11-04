@@ -53,7 +53,7 @@ const SideDrawer = () => {
   };
 
   return (
-    <div>
+    <Box>
       <AppBar
         className="app-bar"
         position="fixed"
@@ -95,11 +95,11 @@ const SideDrawer = () => {
           "& .MuiDrawer-paper": {
             width: 250,
             boxSizing: "border-box",
+            paddingTop: "70px",
           },
         }}
       >
-        <Toolbar />
-        <Box sx={{ width: 220, padding: 2 }}>
+        <Box sx={{ width: "100%", padding: 2, backgroundColor: "white" }}>
           <Typography
             variant="h6"
             sx={{ marginBottom: 2, cursor: "pointer" }}
@@ -116,11 +116,15 @@ const SideDrawer = () => {
           <NewLeague />
           <Divider sx={{ marginY: 2 }} />
         </Box>
-        <Button color="inherit" onClick={() => supabase.auth.signOut()}>
+        <Button
+          color="inherit"
+          onClick={() => supabase.auth.signOut()}
+          sx={{ width: "100%" }}
+        >
           Sign Out
         </Button>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 

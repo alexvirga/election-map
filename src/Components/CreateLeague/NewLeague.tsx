@@ -120,6 +120,7 @@ export const NewLeague = () => {
         helperText={errors.name}
         onChange={handleChange}
         required
+        size="small"
       />
       <TextField
         margin="dense"
@@ -131,6 +132,7 @@ export const NewLeague = () => {
         error={!!errors.buy_in}
         helperText={errors.buy_in}
         onChange={handleChange}
+        size="small"
         required={false}
       />
       <Button onClick={handleSubmit} color="inherit">

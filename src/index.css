@@ -7,6 +7,7 @@
 
   /* Remove color-scheme property */
   color: #213547; /* Set to a light color */
+
   background-color: #ffffff; /* Set to a light background */
 
   font-synthesis: none;
@@ -26,7 +27,21 @@ a:hover {
 
 body {
   margin: 0;
-
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(214, 214, 214, 0.1) 0,
+    rgba(214, 214, 214, 0.1) 1px,
+    white 1px,
+    white 15px,
+    rgba(19, 117, 183, 0.1) 15px,
+    rgba(19, 117, 183, 0.1) 16px,
+    white 16px,
+    white 30px,
+    rgba(201, 49, 53, 0.1) 30px,
+    rgba(201, 49, 53, 0.1) 31px,
+    white 31px,
+    white 45px
+  );
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
