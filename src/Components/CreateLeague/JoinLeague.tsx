@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { supabase } from "../../api/supabase";
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useSession } from "../../context/SessionContext";
 
 export const JoinLeague = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState<{ inviteCode?: string }>({});
+  const { session } = useSession();
+
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors: { inviteCode?: string } = {};
@@ -25,18 +30,7 @@ export const JoinLeague = () => {
       return;
     }
 
-    setStatus("Joining league...");
-
-    // Get the current user session
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    if (!session || !session.user) {
-      setStatus("Error: User not authenticated");
-      return;
-    }
-
-    const userId = session.user.id;
+    const userId = session?.user.id;
 
     const { data: leagueData, error: leagueError } = await supabase
       .from("leagues")
@@ -51,7 +45,6 @@ export const JoinLeague = () => {
 
     const leagueId = leagueData.id;
 
-    // Check if the user is already in the league
     const { data: existingMembership, error: membershipError } = await supabase
       .from("user_leagues")
       .select("id")
@@ -69,19 +62,21 @@ export const JoinLeague = () => {
     }
 
     // Add the user to the user_leagues table
-    const { error: userLeagueError } = await supabase
+    const { data, error: userLeagueError } = await supabase
       .from("user_leagues")
       .insert([
         {
           user_id: userId,
           league_id: leagueId,
         },
-      ]);
+      ])
+      .select();
 
+    console.log(data);
     if (userLeagueError) {
       setStatus(`Error joining league: ${userLeagueError.message}`);
     } else {
-      setStatus("Successfully joined the league!");
+      navigate(`/league/${data[0].league_id}`);
     }
 
     setInviteCode("");
@@ -97,6 +92,7 @@ export const JoinLeague = () => {
         required
         error={!!errors.inviteCode}
         helperText={errors.inviteCode}
+        size={"small"}
       />
 
       <Button color="inherit" onClick={handleSubmit}>
