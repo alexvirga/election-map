@@ -16,7 +16,7 @@ import {
 import { useSession } from "../../context/SessionContext";
 import { getProfile } from "../../api/api";
 import { useNavigate } from "react-router-dom";
-
+import icon from "../../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import JoinLeague from "../CreateLeague/JoinLeague";
 import MyLeagues from "../MyLeagues";
@@ -76,12 +76,13 @@ const SideDrawer = () => {
               <MenuIcon />
             </IconButton>
           )}
+
           <Typography
             onClick={() => navigate(`/`)}
             variant="h6"
             sx={{ cursor: "pointer", fontFamily: '"Lora", serif' }}
           >
-            Pollleague
+            POLLLEAGUE
           </Typography>
           <Countdown />
         </Toolbar>
