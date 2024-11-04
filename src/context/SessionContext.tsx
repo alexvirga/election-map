@@ -34,7 +34,6 @@ export const SessionProvider = ({ children }: Props) => {
       );
 
       return () => {
-        console.log("Cleaning up listener...");
         authListener?.subscription.unsubscribe();
       };
     };

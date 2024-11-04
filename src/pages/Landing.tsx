@@ -36,7 +36,7 @@ const Landing = () => {
           fontFamily: '"Lora", serif',
         }}
       >
-        VOTEPOT
+        POLLLEAGUE
       </Typography>
       <Divider sx={{ width: "60%" }} />
       <AuthPage />

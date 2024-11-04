@@ -16,7 +16,7 @@ export const CreateUserName = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
-    console.log(name);
+
     setUserName(name);
   };
 

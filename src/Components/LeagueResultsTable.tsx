@@ -20,8 +20,6 @@ interface LeagueResultsTableProps {
   members: Member[];
 }
 export const LeagueResultsTable = ({ members }: LeagueResultsTableProps) => {
-  console.log("results");
-
   return (
     <TableContainer component={Paper}>
       <Table size="small">

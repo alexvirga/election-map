@@ -33,7 +33,7 @@ export const MyLeagues = () => {
         .from("user_leagues")
         .select("league_id, leagues(name)")
         .eq("user_id", userId);
-      console.log(data);
+
       if (error) {
         setStatus(`Error fetching leagues: ${error.message}`);
       } else {

@@ -81,7 +81,7 @@ const SideDrawer = () => {
             variant="h6"
             sx={{ cursor: "pointer", fontFamily: '"Lora", serif' }}
           >
-            Votepot
+            Pollleague
           </Typography>
           <Countdown />
         </Toolbar>
