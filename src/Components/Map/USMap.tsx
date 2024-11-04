@@ -10,6 +10,7 @@ interface USMapProps {
   setSelectedStates: (states: SelectedElectoralVotes) => void; // Updated to accept an argument
   selectedStates: SelectedElectoralVotes;
   viewOnly?: boolean;
+  smallView?: boolean;
 }
 type StateAbbreviation = keyof typeof electoralVotes;
 
@@ -24,7 +25,12 @@ const smallStates: StateAbbreviation[] = [
   "DC",
 ];
 
-const USMap = ({ setSelectedStates, selectedStates, viewOnly }: USMapProps) => {
+const USMap = ({
+  setSelectedStates,
+  selectedStates,
+  viewOnly,
+  smallView,
+}: USMapProps) => {
   const handleStateClick = (abbreviation: string) => {
     const currentParty = selectedStates[abbreviation].party;
     const nextParty = (currentParty + 1) % colors.length;
@@ -52,7 +58,9 @@ const USMap = ({ setSelectedStates, selectedStates, viewOnly }: USMapProps) => {
               fill={colors[selectedStates[state.name_short]?.party || 0]}
               stroke="white"
               strokeWidth="2.5"
-              onClick={() => handleStateClick(state.name_short)}
+              onClick={() =>
+                !viewOnly ? handleStateClick(state.name_short) : null
+              }
               style={{ cursor: "pointer" }}
             />
 
@@ -85,26 +93,28 @@ const USMap = ({ setSelectedStates, selectedStates, viewOnly }: USMapProps) => {
           </>
         ))}
       </svg>
-      <div className="table-container">
-        <table className="table">
-          <tbody>
-            {smallStates.map((state) => (
-              <tr
-                key={state}
-                style={{
-                  backgroundColor: colors[selectedStates[state].party],
-                  cursor: "pointer",
-                }}
-                className="small_state"
-                onClick={() => handleStateClick(state)}
-              >
-                <td>{state}</td>
-                <td>{electoralVotes[state].electoral_allocation}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {!smallView && (
+        <div className="table-container">
+          <table className="table">
+            <tbody>
+              {smallStates.map((state) => (
+                <tr
+                  key={state}
+                  style={{
+                    backgroundColor: colors[selectedStates[state].party],
+                    cursor: "pointer",
+                  }}
+                  className="small_state"
+                  onClick={() => (!viewOnly ? handleStateClick(state) : null)}
+                >
+                  <td>{state}</td>
+                  <td>{electoralVotes[state].electoral_allocation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

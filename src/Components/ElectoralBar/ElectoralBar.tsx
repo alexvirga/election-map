@@ -1,3 +1,19 @@
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Button,
+  Divider,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+
 interface ElectoralBarProps {
   democratVotes: number;
   republicanVotes: number;
@@ -13,7 +29,7 @@ export const ElectoralBar = ({
     (538 - (democratVotes + republicanVotes)) / 538;
 
   return (
-    <div>
+    <div style={{ margin: "10px 0px 30px" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h4 style={{ color: "#1375b7" }}>Harris: {democratVotes}</h4>{" "}
         <h4 style={{ color: "#c93135" }}> Trump: {republicanVotes} </h4>

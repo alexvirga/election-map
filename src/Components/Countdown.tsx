@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { Typography, Box } from "@mui/material";
+
 const Countdown = () => {
   const targetDate = new Date("2024-11-05T18:00:00-05:00");
 
@@ -42,8 +44,16 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div>
-      <div style={{ fontSize: "40px", fontWeight: 100 }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "baseline",
+        margin: "auto",
+        justifyContent: "center",
+        width: "280px",
+      }}
+    >
+      <Box style={{ fontSize: "32px", fontWeight: 100 }}>
         <span style={{ marginRight: "5px" }}>
           {String(timeLeft.days).padStart(2, "0")}
         </span>
@@ -57,9 +67,9 @@ const Countdown = () => {
         </span>
         <span style={{ marginRight: "5px" }}>:</span>
         <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
-      </div>
-      to lock-in
-    </div>
+      </Box>
+      {/* <span style={{ fontWeight: 100 }}> until lock-in</span> */}
+    </Box>
   );
 };
 

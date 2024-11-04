@@ -4,11 +4,26 @@ import { supabase } from "../api/supabase";
 import USMap from "./Map/USMap";
 import { SelectedElectoralVotes } from "../types";
 import Avatar from "@mui/material/Avatar";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+  TextField,
+  Divider,
+  Box,
+  Typography,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
 import { usStatesPathData, electoralVotes } from "../usStatesPathData";
 import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
 import LeagueResultsTable from "./LeagueResultsTable";
 import PlaceholderMap from "./Map/PlaceholderMap";
 import LeagueLeaderboard from "./LeagueLeaderboard";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 type Member = {
   user_id: string;
   profile: {
@@ -20,7 +35,7 @@ type LeagueDetails = {
   id: number;
   createdAt: string;
   name: string;
-  inviteCode: string;
+  invite_code: string;
   buy_in?: number | null;
   owner: string;
 };
@@ -72,22 +87,57 @@ export const LeagueDetails = () => {
     fetchMembers();
   }, [leagueId]);
 
+  const handleCopyInviteCode = () => {
+    if (leagueDetails?.invite_code) {
+      navigator.clipboard.writeText(leagueDetails.invite_code);
+    }
+  };
+
   // const handleMemberClick = (member: Member) => {
   //   setSelectedMember(member);
   //   console.log("members", members);
   // };
 
   return (
-    <div style={{ overflow: "scroll" }}>
-      <h1>{leagueDetails?.name}</h1>
-      <div>
-        <div style={{ maxWidth: "700px", margin: "auto" }}>
-          <PlaceholderMap />
-        </div>
-        {/* <LeagueLeaderboard members={members} /> */}
-      </div>
+    <Box style={{ overflow: "scroll" }}>
+      <Box>
+        <Typography>
+          League Name: <b> {leagueDetails?.name}</b>
+        </Typography>
+        <Typography>
+          Invite Code: <b>{leagueDetails?.invite_code}</b>
+          <Tooltip title="Copy to clipboard">
+            <IconButton
+              onClick={handleCopyInviteCode}
+              aria-label="copy invite code"
+              style={{ padding: "0px", marginLeft: "5px" }}
+            >
+              <ContentCopyIcon />
+            </IconButton>
+          </Tooltip>
+        </Typography>
+        {leagueDetails?.buy_in && (
+          <>
+            <Typography>
+              Buy-In: <b> ${leagueDetails?.buy_in}</b>
+            </Typography>
+            <Typography>
+              Pot: <b> ${leagueDetails?.buy_in * members.length}</b>
+            </Typography>
+          </>
+        )}
+      </Box>
+      <Divider sx={{ width: "60%", margin: "24px 0px" }} />
+      {/* {status && <p>{status}</p>} */}
 
-      <div
+      <Box>
+        <Box style={{ maxWidth: "700px", margin: "auto" }}>
+          <PlaceholderMap />
+        </Box>
+        <LeagueLeaderboard members={members} />
+      </Box>
+
+      <Box
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
@@ -96,26 +146,27 @@ export const LeagueDetails = () => {
         }}
       >
         {members.map((member) => (
-          <div style={{ width: "200px" }}>
+          <Box style={{ width: "200px" }}>
             <h4> {member.profile.username} </h4>
             {member.profile.electoral_predictions ? (
               <USMap
                 setSelectedStates={() => {}}
                 selectedStates={member.profile.electoral_predictions}
                 viewOnly={true}
+                smallView
               />
             ) : (
-              <PlaceholderMap />
+              <PlaceholderMap smallView />
             )}
-            <div>Score: </div>
-          </div>
+            <Box>Score: </Box>
+          </Box>
         ))}
-      </div>
+      </Box>
 
       {/* <LeagueResultsTable members={members} /> */}
 
       {/* {selectedMember && (
-        <div>
+        <Box>
           <h2>Prediction for {selectedMember.profile.username}</h2>
           <USMap
             selectedStates={
@@ -123,9 +174,9 @@ export const LeagueDetails = () => {
             }
             setSelectedStates={() => {}}
           />
-        </div>
+        </Box>
       )} */}
-    </div>
+    </Box>
   );
 };
 

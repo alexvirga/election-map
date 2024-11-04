@@ -13,3 +13,11 @@ export const calculateTotals = (selectedStates: SelectedElectoralVotes) => {
   }
   return { democratVotes, republicanVotes };
 };
+
+export const isAfter6PMNov5th2024 = () => {
+  const currentTime = new Date();
+
+  const targetTime = new Date(Date.UTC(2024, 10, 5, 23, 0, 0));
+
+  return currentTime > targetTime;
+};

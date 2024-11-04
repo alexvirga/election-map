@@ -57,7 +57,7 @@ export const MyLeagues = () => {
 
   return (
     <Box>
-      <h4>My Leagues</h4>
+      <Typography variant="h4">My Leagues</Typography>
       {status && <p>{status}</p>}
 
       {leagues.map((league) => (

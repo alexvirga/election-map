@@ -6,11 +6,12 @@ import AuthPage from "./pages/auth/AuthPage.tsx";
 import Dashboard from "./pages/Dashboard";
 import LeagueDetails from "./Components/LeagueDetails.tsx";
 import MainLayout from "./Components/Navigation/MainLayout.tsx";
+import Landing from "./pages/Landing.tsx";
 function App() {
   return (
     <Providers>
       <Routes>
-        <Route path="/" element={<AuthPage />} />
+        <Route path="/" element={<Landing />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route element={<AuthProtectedRoute />}>
           <Route

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { supabase } from "../../api/supabase";
+import Countdown from "../../Components/Countdown";
 import {
   AppBar,
   Toolbar,
@@ -56,13 +58,14 @@ const SideDrawer = () => {
   return (
     <div>
       <AppBar
+        className="app-bar"
         position="fixed"
         elevation={0}
         sx={{
           borderBottom: "4px solid #1976d2",
           backgroundColor: "#f1f1f1",
           zIndex: theme.zIndex.drawer + 1, // Ensure it stays above the drawer
-          height: "60px",
+
           color: "inherit",
         }}
       >
@@ -76,9 +79,14 @@ const SideDrawer = () => {
               <MenuIcon />
             </IconButton>
           )}
-          <Typography onClick={() => navigate(`/`)} variant="h6">
+          <Typography
+            onClick={() => navigate(`/`)}
+            variant="h6"
+            sx={{ cursor: "pointer", fontFamily: '"Lora", serif' }}
+          >
             Votepot
           </Typography>
+          <Countdown />
         </Toolbar>
       </AppBar>
 
@@ -97,7 +105,7 @@ const SideDrawer = () => {
         <Box sx={{ width: 220, padding: 2 }}>
           <Typography
             variant="h6"
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2, cursor: "pointer" }}
             onClick={() => navigate(`/`)}
           >
             {username}
@@ -111,6 +119,9 @@ const SideDrawer = () => {
           <NewLeague />
           <Divider sx={{ marginY: 2 }} />
         </Box>
+        <Button color="inherit" onClick={() => supabase.auth.signOut()}>
+          Sign Out
+        </Button>
       </Drawer>
     </div>
   );

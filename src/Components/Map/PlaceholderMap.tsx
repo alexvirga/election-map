@@ -4,9 +4,29 @@ import {
   SelectedElectoralVotes,
 } from "../../usStatesPathData";
 
-export const PlaceholderMap = () => {
+import "./Maps.css";
+
+type StateAbbreviation = keyof typeof electoralVotes;
+
+interface USMapPlaceholderProps {
+  smallView?: boolean;
+}
+
+export const PlaceholderMap = ({ smallView }: USMapPlaceholderProps) => {
+  const smallStates: StateAbbreviation[] = [
+    "MA",
+    "RI",
+    "CT",
+    "NJ",
+    "DE",
+    "MD",
+    "DC",
+  ];
+
+  const colors = ["#d6d6d6", "#1375b7", "#c93135"];
+
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <svg width="100%" height="100%" viewBox="50 0 1000 600">
         {usStatesPathData.map((state) => (
           <>
@@ -48,6 +68,26 @@ export const PlaceholderMap = () => {
           </>
         ))}
       </svg>
+      {!smallView && (
+        <div className="table-container">
+          <table className="table">
+            <tbody>
+              {smallStates.map((state) => (
+                <tr
+                  key={state}
+                  style={{
+                    backgroundColor: "#d6d6d6",
+                  }}
+                  className="small_state"
+                >
+                  <td>{state}</td>
+                  <td>{electoralVotes[state].electoral_allocation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
