@@ -143,6 +143,22 @@ const SideDrawer = () => {
             setTriggerRefetch={setTriggerRefetch}
           />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
+          <Typography
+            variant="caption"
+            sx={{
+              textAlign: "center",
+              width: "100%",
+            }}
+          >
+            <a
+              href="http://localhost:5174/rules"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              Rules
+            </a>
+          </Typography>
         </Box>
         <Button
           color="inherit"
@@ -188,7 +204,7 @@ const SideDrawer = () => {
             </a>
           </Typography>
         </Box>
-      </Drawer>{" "}
+      </Drawer>
     </Box>
   );
 };

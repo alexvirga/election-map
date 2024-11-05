@@ -51,6 +51,23 @@ const Landing = () => {
         compete with friends. Lock in your picks by 6 PM EST Tuesday Nov. 5th,
         then explore and compare predictions with other league members.
       </Typography>
+      <Typography
+        variant="caption"
+        sx={{
+          textAlign: "center",
+          width: "100%",
+          m: 2,
+        }}
+      >
+        <a
+          href="http://localhost:5174/rules"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          Rules
+        </a>
+      </Typography>
       <Divider sx={{ width: "60%", mt: "20px" }} />
       <AuthPage />
       <Divider sx={{ width: "60%" }} />
