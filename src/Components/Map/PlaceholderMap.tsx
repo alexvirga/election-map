@@ -1,5 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { usStatesPathData, electoralVotes } from "../../usStatesPathData";
+import {
+  usStatesPathData,
+  electoralVotes,
+  maine,
+  nebraska,
+} from "../../usStatesPathData";
 
 import "./Maps.css";
 
@@ -20,10 +25,11 @@ export const PlaceholderMap = ({ smallView }: USMapPlaceholderProps) => {
     "DC",
   ];
 
+  const allStates = [...usStatesPathData, maine, nebraska];
   return (
     <div style={{ position: "relative" }}>
       <svg width="100%" height="100%" viewBox="50 0 1000 600">
-        {usStatesPathData.map((state) => (
+        {allStates.map((state) => (
           <>
             <path
               key={state.name}
