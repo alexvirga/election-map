@@ -120,6 +120,7 @@ export const JoinLeague = ({ setTriggerRefetch }: Props) => {
       <Button
         color="inherit"
         onClick={handleSubmit}
+        size="small"
         sx={{
           backgroundColor: "#444",
           color: "#ffffff",

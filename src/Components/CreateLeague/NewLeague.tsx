@@ -184,6 +184,7 @@ export const NewLeague = ({ setIsDrawerOpen, setTriggerRefetch }: Props) => {
       <Button
         onClick={handleSubmit}
         color="inherit"
+        size="small"
         sx={{
           backgroundColor: "#444",
           color: "#ffffff",

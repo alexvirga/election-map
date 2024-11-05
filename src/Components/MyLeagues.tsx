@@ -56,29 +56,46 @@ export const MyLeagues = ({ triggerRefetch }: Props) => {
         color: "#ffffff",
       }}
     >
-      <Typography variant="h6" mb={1} sx={{ color: "#ffffff" }}>
+      <Typography mb={1} sx={{ color: "#ffffff" }}>
         My Leagues
       </Typography>
       {status && <Typography sx={{ color: "#ff4d4d" }}>{status}</Typography>}
-
-      {leagues.map((league) => (
-        <Typography
-          key={league.league_id}
-          onClick={() => navigate(`/league/${league.leagues.invite_code}`)}
-          sx={{
-            cursor: "pointer",
-            color: "#b3b3b3", // Light gray for clickable items
-            "&:hover": {
-              color: "#ffffff",
-            },
-            width: "fit-content",
-            marginBottom: 1,
-          }}
-          variant="body2"
-        >
-          {league.leagues.name}
-        </Typography>
-      ))}
+      <Box
+        sx={{
+          maxHeight: "120px",
+          overflowY: "scroll", // Shows only the vertical scroll bar
+          overflowX: "hidden", // Ensures horizontal scroll bar is hidden
+          "&::-webkit-scrollbar": {
+            width: "8px", // Vertical scroll bar width
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#ffffff", // White color for the thumb
+            borderRadius: "4px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "#333333", // Darker color for the track
+          },
+        }}
+      >
+        {leagues.map((league) => (
+          <Typography
+            key={league.league_id}
+            onClick={() => navigate(`/league/${league.leagues.invite_code}`)}
+            sx={{
+              cursor: "pointer",
+              color: "#b3b3b3", // Light gray for clickable items
+              "&:hover": {
+                color: "#ffffff",
+              },
+              width: "fit-content",
+              marginBottom: 1,
+            }}
+            variant="body2"
+          >
+            {league.leagues.name}
+          </Typography>
+        ))}
+      </Box>
     </Box>
   );
 };

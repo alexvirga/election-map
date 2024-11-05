@@ -108,7 +108,7 @@ const USMap = ({
     <div style={{ position: "relative" }}>
       <svg width="100%" height="100%" viewBox="50 0 1000 600">
         {usStatesPathData.map((state) => (
-          <>
+          <g key={state.name}>
             <path
               key={state.name}
               d={state.path}
@@ -147,7 +147,7 @@ const USMap = ({
                 </text>
               </>
             )}
-          </>
+          </g>
         ))}
 
         <defs>{getMainePattern()}</defs>
