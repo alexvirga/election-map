@@ -52,8 +52,8 @@ const USMap = ({
   const getMainePattern = () => {
     const parties = [
       selectedStates["ME"].party,
-      selectedStates["ME_2"].party,
       selectedStates["ME_1"].party,
+      selectedStates["ME_2"].party,
     ];
 
     return (
@@ -79,8 +79,8 @@ const USMap = ({
   const getNebraskaPattern = () => {
     const parties = [
       selectedStates["NE"].party,
-      selectedStates["NE_2"].party,
       selectedStates["NE_1"].party,
+      selectedStates["NE_2"].party,
       selectedStates["NE_3"].party,
     ];
 
@@ -254,69 +254,108 @@ const USMap = ({
           <Box mr={2}>
             <Typography> Maine </Typography>
             <Box style={{ display: "flex" }}>
-              <Box
-                className="state_extra"
-                style={{ backgroundColor: colors[selectedStates["ME"].party] }}
-                onClick={() => (!viewOnly ? handleStateClick("ME") : null)}
-              >
-                2
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["ME"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("ME") : null)}
+                >
+                  2
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  SW
+                </Typography>
               </Box>
-              <Box
-                className="state_extra"
-                style={{
-                  backgroundColor: colors[selectedStates["ME_1"].party],
-                }}
-                onClick={() => (!viewOnly ? handleStateClick("ME_1") : null)}
-              >
-                1
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["ME_1"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("ME_1") : null)}
+                >
+                  1
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  ME-1
+                </Typography>
               </Box>
-              <Box
-                className="state_extra"
-                style={{
-                  backgroundColor: colors[selectedStates["ME_2"].party],
-                }}
-                onClick={() => (!viewOnly ? handleStateClick("ME_2") : null)}
-              >
-                1
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["ME_2"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("ME_2") : null)}
+                >
+                  1
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  ME-2
+                </Typography>
               </Box>
             </Box>
           </Box>
           <Box>
             <Typography> Nebraska </Typography>
             <Box style={{ display: "flex" }}>
-              <Box
-                className="state_extra"
-                style={{ backgroundColor: colors[selectedStates["NE"].party] }}
-                onClick={() => (!viewOnly ? handleStateClick("NE") : null)}
-              >
-                2
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["NE"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("NE") : null)}
+                >
+                  2
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  SW
+                </Typography>
               </Box>
-              <Box
-                className="state_extra"
-                style={{
-                  backgroundColor: colors[selectedStates["NE_1"].party],
-                }}
-                onClick={() => (!viewOnly ? handleStateClick("NE_1") : null)}
-              >
-                1
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["NE_1"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("NE_1") : null)}
+                >
+                  1
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  NE-1
+                </Typography>
               </Box>
-              <Box
-                className="state_extra"
-                style={{
-                  backgroundColor: colors[selectedStates["NE_2"].party],
-                }}
-                onClick={() => (!viewOnly ? handleStateClick("NE_2") : null)}
-              >
-                1
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["NE_2"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("NE_2") : null)}
+                >
+                  1
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  NE-2
+                </Typography>
               </Box>
-              <Box
-                className="state_extra"
-                style={{
-                  backgroundColor: colors[selectedStates["NE_3"].party],
-                }}
-                onClick={() => (!viewOnly ? handleStateClick("NE_3") : null)}
-              >
-                1
+              <Box>
+                <Box
+                  className="state_extra"
+                  style={{
+                    backgroundColor: colors[selectedStates["NE_3"].party],
+                  }}
+                  onClick={() => (!viewOnly ? handleStateClick("NE_3") : null)}
+                >
+                  1
+                </Box>
+                <Typography sx={{ fontSize: "8px", textAlign: "center" }}>
+                  NE-3
+                </Typography>
               </Box>
             </Box>
           </Box>
