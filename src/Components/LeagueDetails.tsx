@@ -41,8 +41,6 @@ export const LeagueDetails = () => {
 
   const [, setStatus] = useState("");
 
-  const allStates = [...usStatesPathData, maine, nebraska];
-
   const { session } = useSession();
   const userId = session?.user.id;
 
