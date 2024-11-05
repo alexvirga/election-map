@@ -108,6 +108,7 @@ const SideDrawer = () => {
             width: "100%",
             padding: 2,
             backgroundColor: "#1c1c1c",
+            flex: 4,
             color: "#ffffff",
             boxShadow:
               "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
@@ -151,7 +152,7 @@ const SideDrawer = () => {
             }}
           >
             <a
-              href="http://localhost:5174/rules"
+              href="https://www.pollleague.com/rules"
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
@@ -174,6 +175,7 @@ const SideDrawer = () => {
             marginTop: "auto",
             flexDirection: "column",
             alignItems: "center",
+            flex: 1,
           }}
         >
           <Typography

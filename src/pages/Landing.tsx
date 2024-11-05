@@ -60,7 +60,7 @@ const Landing = () => {
         }}
       >
         <a
-          href="http://localhost:5174/rules"
+          href="https://www.pollleague.com/rules"
           target="_blank"
           rel="noopener noreferrer"
           style={{ textDecoration: "none" }}
