@@ -3,7 +3,10 @@ import { supabase } from "../../api/supabase";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export const NewLeague = () => {
+interface Props {
+  setIsDrawerOpen: (isDrawerOpen: boolean) => void;
+}
+export const NewLeague = ({ setIsDrawerOpen }: Props) => {
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState<{
     name?: string;
@@ -48,8 +51,6 @@ export const NewLeague = () => {
     if (!validateForm()) {
       return;
     }
-
-    setStatus("Creating league...");
 
     const generateInviteCode = () => {
       return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -104,6 +105,7 @@ export const NewLeague = () => {
       setStatus("");
       navigate(`/league/${newLeague.invite_code}`);
       setFormData({ name: "", buy_in: null });
+      setIsDrawerOpen(false);
     }
   };
 

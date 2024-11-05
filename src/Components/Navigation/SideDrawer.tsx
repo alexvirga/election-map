@@ -137,7 +137,7 @@ const SideDrawer = () => {
           <JoinLeague />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
           <Typography sx={{ color: "#ffffff" }}> Create New League </Typography>
-          <NewLeague />
+          <NewLeague setIsDrawerOpen={setIsDrawerOpen} />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
         </Box>
         <Button
