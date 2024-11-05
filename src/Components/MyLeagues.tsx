@@ -21,7 +21,6 @@ export const MyLeagues = ({ triggerRefetch }: Props) => {
 
   useEffect(() => {
     const fetchLeagues = async () => {
-      console.log("fetching");
       setStatus("Loading...");
       const {
         data: { session },
