@@ -62,9 +62,12 @@ export const Dashboard = () => {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <Alert
-              severity="success"
               variant="filled"
-              sx={{ color: "white", fontWeight: 400 }}
+              sx={{
+                color: "white",
+                fontWeight: 400,
+                backgroundColor: "#1c1c1c",
+              }}
             >
               Selection saved!
             </Alert>
@@ -89,7 +92,12 @@ export const Dashboard = () => {
         />
         <Button
           onClick={handleCreatePrediction}
-          style={{ marginTop: "20px", display: "flex", margin: "auto" }}
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            margin: "auto",
+            backgroundColor: "white",
+          }}
           color="inherit"
           variant="outlined"
         >

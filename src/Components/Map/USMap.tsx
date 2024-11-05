@@ -2,6 +2,8 @@ import {
   usStatesPathData,
   electoralVotes,
   SelectedElectoralVotes,
+  maine,
+  nebraska,
 } from "../../usStatesPathData";
 import "./Maps.css";
 import { Box, Typography } from "@mui/material";
@@ -45,6 +47,61 @@ const USMap = ({
     };
 
     setSelectedStates(updatedStates);
+  };
+
+  const getMainePattern = () => {
+    const parties = [
+      selectedStates["ME"].party,
+      selectedStates["ME_2"].party,
+      selectedStates["ME_1"].party,
+    ];
+
+    return (
+      <pattern
+        id="maine-striped-pattern"
+        width="15"
+        height="30"
+        patternUnits="userSpaceOnUse"
+      >
+        {parties.map((party, index) => (
+          <rect
+            key={index}
+            x={index * 5}
+            width="5"
+            height="30"
+            fill={colors[party]}
+          />
+        ))}
+      </pattern>
+    );
+  };
+
+  const getNebraskaPattern = () => {
+    const parties = [
+      selectedStates["NE"].party,
+      selectedStates["NE_2"].party,
+      selectedStates["NE_1"].party,
+      selectedStates["NE_3"].party,
+    ];
+
+    return (
+      <pattern
+        id="nebraska-striped-pattern"
+        width="20"
+        height="30"
+        patternUnits="userSpaceOnUse"
+      >
+        {parties.map((party, index) => (
+          <rect
+            key={index}
+            x={index * 5}
+            width="5"
+            height="30"
+            fill={colors[party]}
+          />
+        ))}
+      </pattern>
+    );
   };
 
   return (
@@ -92,6 +149,83 @@ const USMap = ({
             )}
           </>
         ))}
+
+        <defs>{getMainePattern()}</defs>
+        <defs>{getNebraskaPattern()}</defs>
+        <>
+          <path
+            key={maine.name}
+            d={maine.path}
+            fill="url(#maine-striped-pattern)"
+            stroke="white"
+            strokeWidth="2.5"
+            onClick={() => (!viewOnly ? handleStateClick("ME") : null)}
+            style={{ cursor: "pointer" }}
+          />
+
+          {maine.displayLabel && (
+            <>
+              <text
+                x={maine.labelX}
+                y={maine.labelY}
+                fontSize="14"
+                fontWeight={600}
+                fill="black"
+                textAnchor="middle"
+                style={{ userSelect: "none" }}
+              >
+                {maine.name_short}
+              </text>
+              <text
+                x={maine.labelX}
+                y={maine.labelY + 17}
+                fontSize="12"
+                fill="black"
+                textAnchor="middle"
+                fontWeight={600}
+                style={{ userSelect: "none" }}
+              >
+                {maine.electoral_allocation}
+              </text>
+            </>
+          )}
+
+          {nebraska.displayLabel && (
+            <>
+              <path
+                key={nebraska.name}
+                d={nebraska.path}
+                fill="url(#nebraska-striped-pattern)"
+                stroke="white"
+                strokeWidth="2.5"
+                onClick={() => (!viewOnly ? handleStateClick("NE") : null)}
+                style={{ cursor: "pointer" }}
+              />
+              <text
+                x={nebraska.labelX}
+                y={nebraska.labelY}
+                fontSize="14"
+                fontWeight={600}
+                fill="black"
+                textAnchor="middle"
+                style={{ userSelect: "none" }}
+              >
+                {nebraska.name_short}
+              </text>
+              <text
+                x={nebraska.labelX}
+                y={nebraska.labelY + 17}
+                fontSize="12"
+                fill="black"
+                textAnchor="middle"
+                fontWeight={600}
+                style={{ userSelect: "none" }}
+              >
+                {nebraska.electoral_allocation}
+              </text>
+            </>
+          )}
+        </>
       </svg>
       {!smallView && (
         <div className="table-container">
