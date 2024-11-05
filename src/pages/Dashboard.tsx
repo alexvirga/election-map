@@ -6,6 +6,7 @@ import { calculateTotals } from "../utils";
 import { getProfile, updatePrediction } from "../api/api";
 import { Button, Snackbar, Alert } from "@mui/material";
 import { useSession } from "../context/SessionContext";
+import { isAfter6PMNov5th2024 } from "../utils";
 
 export const Dashboard = () => {
   const [selectedStates, setSelectedStates] = useState<{
@@ -92,6 +93,7 @@ export const Dashboard = () => {
           democratVotes={democratVotes}
           republicanVotes={republicanVotes}
         />
+
         <Button
           onClick={handleCreatePrediction}
           style={{
@@ -101,6 +103,7 @@ export const Dashboard = () => {
             backgroundColor: "white",
           }}
           color="inherit"
+          disabled={isAfter6PMNov5th2024()}
           variant="outlined"
         >
           Save
