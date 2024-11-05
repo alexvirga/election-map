@@ -122,10 +122,12 @@ export const LeagueDetails = () => {
             borderBottom: "1px solid #f5c6cb",
           }}
         >
-          Picks from others will remain hidden until 6 PM on Tuesday.
+          Picks from others will remain hidden until 6 PM EST on Tuesday.
         </div>
       </Box>
-      {/* {status && <p>{status}</p>} */}
+      <Typography sx={{ textAlign: "center", marginTop: "10px" }} variant="h3">
+        LEAGUE RESULTS
+      </Typography>
 
       <Box>
         <Box style={{ maxWidth: "700px", margin: "auto" }}>

@@ -4,7 +4,7 @@ import ElectoralBar from "../Components/ElectoralBar/ElectoralBar";
 import { electoralVotes } from "../usStatesPathData";
 import { calculateTotals } from "../utils";
 import { getProfile, updatePrediction } from "../api/api";
-import { Button, Snackbar, Alert } from "@mui/material";
+import { Button, Snackbar, Alert, Typography } from "@mui/material";
 import { useSession } from "../context/SessionContext";
 
 export const Dashboard = () => {
@@ -84,8 +84,9 @@ export const Dashboard = () => {
             borderBottom: "1px solid #ffeeba",
           }}
         >
-          Your pick will remain hidden until 6 PM on Tuesday.
+          Your pick will remain hidden until 6 PM EST on Tuesday.
         </div>
+
         <ElectoralBar
           democratVotes={democratVotes}
           republicanVotes={republicanVotes}

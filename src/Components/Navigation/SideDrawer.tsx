@@ -20,6 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import JoinLeague from "../CreateLeague/JoinLeague";
 import MyLeagues from "../MyLeagues";
 import NewLeague from "../CreateLeague/NewLeague";
+import MapIcon from "@mui/icons-material/Map";
 
 const SideDrawer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -112,13 +113,25 @@ const SideDrawer = () => {
           }}
         >
           <Typography
-            variant="h6"
+            variant="body1"
             sx={{ marginBottom: 2, cursor: "pointer", color: "#ffffff" }}
             onClick={() => navigate(`/`)}
           >
             {username}
           </Typography>
           <Divider sx={{ marginBottom: 2, borderColor: "#494949" }} />
+
+          <Button
+            variant="text"
+            sx={{ marginBottom: 2, cursor: "pointer", color: "#ffffff" }}
+            onClick={() => navigate(`/`)}
+            startIcon={<MapIcon />}
+          >
+            Make Selections
+          </Button>
+
+          <Divider sx={{ marginBottom: 2, borderColor: "#494949" }} />
+
           <MyLeagues />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
           <JoinLeague />
