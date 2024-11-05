@@ -112,7 +112,6 @@ export const NewLeague = ({ setIsDrawerOpen }: Props) => {
   return (
     <div>
       <TextField
-        autoFocus
         margin="dense"
         label="League Name"
         type="text"
