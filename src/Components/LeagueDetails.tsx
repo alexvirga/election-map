@@ -8,12 +8,7 @@ import PlaceholderMap from "./Map/PlaceholderMap";
 import LeagueLeaderboard from "./LeagueLeaderboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import GroupMap from "./Map/GroupMap";
-import {
-  usStatesPathData,
-  electoralVotes,
-  maine,
-  nebraska,
-} from "../usStatesPathData";
+import { electoralVotes } from "../usStatesPathData";
 import { isAfter6PMNov5th2024 } from "../utils";
 import { useSession } from "../context/SessionContext";
 
