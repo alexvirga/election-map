@@ -64,16 +64,14 @@ export const JoinLeague = ({ setTriggerRefetch }: Props) => {
       return;
     }
 
-    // Add the user to the user_leagues table
-    const { data, error: userLeagueError } = await supabase
+    const { error: userLeagueError } = await supabase
       .from("user_leagues")
       .insert([
         {
           user_id: userId,
           league_id: leagueId,
         },
-      ])
-      .select();
+      ]);
 
     if (userLeagueError) {
       setStatus(`Error joining league: ${userLeagueError.message}`);
