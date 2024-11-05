@@ -7,6 +7,15 @@ import { Divider, Box, Typography, Tooltip, IconButton } from "@mui/material";
 import PlaceholderMap from "./Map/PlaceholderMap";
 import LeagueLeaderboard from "./LeagueLeaderboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import GroupMap from "./Map/GroupMap";
+import {
+  usStatesPathData,
+  electoralVotes,
+  maine,
+  nebraska,
+} from "../usStatesPathData";
+import { isAfter6PMNov5th2024 } from "../utils";
+import { useSession } from "../context/SessionContext";
 
 type Member = {
   user_id: string;
@@ -31,6 +40,11 @@ export const LeagueDetails = () => {
   const [leagueDetails, setLeagueDetails] = useState<LeagueDetails>();
 
   const [, setStatus] = useState("");
+
+  const allStates = [...usStatesPathData, maine, nebraska];
+
+  const { session } = useSession();
+  const userId = session?.user.id;
 
   useEffect(() => {
     if (!invite_code) {
@@ -137,7 +151,16 @@ export const LeagueDetails = () => {
 
         <Box>
           <Box style={{ maxWidth: "700px", margin: "auto" }}>
-            <PlaceholderMap />
+            {isAfter6PMNov5th2024() ? (
+              <GroupMap
+                setSelectedStates={() => {}}
+                viewOnly={true}
+                selectedStates={electoralVotes}
+                members={members}
+              />
+            ) : (
+              <PlaceholderMap />
+            )}
           </Box>
         </Box>
         <Divider sx={{ width: "60%", margin: "24px auto" }} />
@@ -153,11 +176,9 @@ export const LeagueDetails = () => {
         >
           {members.map((member, idx) => (
             <Box style={{ width: "200px" }} key={idx}>
-              <Typography variant="body1">
-                {" "}
-                {member.profile.username}{" "}
-              </Typography>
-              {member.profile.electoral_predictions ? (
+              <Typography variant="body1">{member.profile.username}</Typography>
+              {member.profile.electoral_predictions &&
+              (member.user_id === userId || isAfter6PMNov5th2024()) ? (
                 <USMap
                   setSelectedStates={() => {}}
                   selectedStates={member.profile.electoral_predictions}
