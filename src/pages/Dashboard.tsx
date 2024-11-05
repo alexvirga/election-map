@@ -84,7 +84,8 @@ export const Dashboard = () => {
             borderBottom: "1px solid #ffeeba",
           }}
         >
-          Your pick will remain hidden until 6 PM EST on Tuesday.
+          You have until 6 PM EST on Tuesday to lock in your selection. Don't
+          forget to hit save!
         </div>
 
         <ElectoralBar
