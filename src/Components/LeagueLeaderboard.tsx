@@ -1,7 +1,14 @@
 import Table from "@mui/material/Table";
 
 import { SelectedElectoralVotes } from "../types";
-import { Skeleton, Box, Typography } from "@mui/material";
+import {
+  Skeleton,
+  Box,
+  Typography,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@mui/material";
 
 type Member = {
   user_id: string;
@@ -20,9 +27,15 @@ export const LeagueLeaderboard = ({ members }: LeagueLeaderboardProps) => {
     <Box>
       <Typography> Leaderboard </Typography>
       <Table>
-        {members.map((_, idx) => (
-          <Skeleton key={idx} animation={false} sx={{ maxWidth: "300px" }} />
-        ))}
+        <TableBody>
+          {members.map((_, idx) => (
+            <TableRow key={idx}>
+              <TableCell>
+                <Skeleton animation={false} sx={{ maxWidth: "300px" }} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </Box>
   );
