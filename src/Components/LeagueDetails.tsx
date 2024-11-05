@@ -79,87 +79,97 @@ export const LeagueDetails = () => {
   };
 
   return (
-    <Box style={{ overflow: "scroll" }}>
-      <Box>
+    <Box
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Box style={{ maxWidth: "920px", width: "100%", padding: "10px" }}>
         <Box>
-          <Typography>
-            League Name: <b> {leagueDetails?.name}</b>
-          </Typography>
-          <Typography>
-            Invite Code: <b>{leagueDetails?.invite_code}</b>
-            <Tooltip title="Copy to clipboard">
-              <IconButton
-                onClick={handleCopyInviteCode}
-                aria-label="copy invite code"
-                style={{ padding: "0px", marginLeft: "5px" }}
-              >
-                <ContentCopyIcon />
-              </IconButton>
-            </Tooltip>
-          </Typography>
-          {leagueDetails?.buy_in && (
-            <>
-              <Typography>
-                Buy-In: <b> ${leagueDetails?.buy_in}</b>
-              </Typography>
-              <Typography>
-                Pot: <b> ${leagueDetails?.buy_in * members.length}</b>
-              </Typography>
-            </>
-          )}
-        </Box>
-      </Box>
-      <Divider sx={{ width: "60%", margin: "24px auto" }} />
-      <Box>
-        <div
-          style={{
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            padding: "10px",
-            textAlign: "center",
-            fontSize: "16px",
-            fontWeight: "bold",
-            borderBottom: "1px solid #f5c6cb",
-          }}
-        >
-          Picks from others will remain hidden until 6 PM EST on Tuesday.
-        </div>
-      </Box>
-      <Typography sx={{ textAlign: "center", marginTop: "10px" }} variant="h3">
-        LEAGUE RESULTS
-      </Typography>
-
-      <Box>
-        <Box style={{ maxWidth: "700px", margin: "auto" }}>
-          <PlaceholderMap />
-        </Box>
-      </Box>
-      <Divider sx={{ width: "60%", margin: "24px auto" }} />
-      <LeagueLeaderboard members={members} />
-      <Divider sx={{ width: "60%", margin: "24px auto" }} />
-      <Box
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "16px",
-          placeItems: "center",
-        }}
-      >
-        {members.map((member, idx) => (
-          <Box style={{ width: "200px" }} key={idx}>
-            <Typography variant="body1"> {member.profile.username} </Typography>
-            {member.profile.electoral_predictions ? (
-              <USMap
-                setSelectedStates={() => {}}
-                selectedStates={member.profile.electoral_predictions}
-                viewOnly={true}
-                smallView
-              />
-            ) : (
-              <PlaceholderMap smallView />
+          <Box>
+            <Typography>
+              League Name: <b> {leagueDetails?.name}</b>
+            </Typography>
+            <Typography>
+              Invite Code: <b>{leagueDetails?.invite_code}</b>
+              <Tooltip title="Copy to clipboard">
+                <IconButton
+                  onClick={handleCopyInviteCode}
+                  aria-label="copy invite code"
+                  style={{ padding: "0px", marginLeft: "5px" }}
+                >
+                  <ContentCopyIcon />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+            {leagueDetails?.buy_in && (
+              <>
+                <Typography>
+                  Buy-In: <b> ${leagueDetails?.buy_in}</b>
+                </Typography>
+                <Typography>
+                  Pot: <b> ${leagueDetails?.buy_in * members.length}</b>
+                </Typography>
+              </>
             )}
           </Box>
-        ))}
+        </Box>
+        <Divider sx={{ width: "60%", margin: "24px auto" }} />
+        <Box>
+          <div
+            style={{
+              backgroundColor: "#f8d7da",
+              color: "#721c24",
+              padding: "10px",
+              textAlign: "center",
+              fontSize: "16px",
+              fontWeight: "bold",
+              borderBottom: "1px solid #f5c6cb",
+            }}
+          >
+            Picks from others will remain hidden until 6 PM EST on Tuesday.
+          </div>
+        </Box>
+        <Typography
+          sx={{ textAlign: "center", marginTop: "10px" }}
+          variant="h3"
+        >
+          LEAGUE RESULTS
+        </Typography>
+
+        <Box>
+          <Box style={{ maxWidth: "700px", margin: "auto" }}>
+            <PlaceholderMap />
+          </Box>
+        </Box>
+        <Divider sx={{ width: "60%", margin: "24px auto" }} />
+        <LeagueLeaderboard members={members} />
+        <Divider sx={{ width: "60%", margin: "24px auto" }} />
+        <Box
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "16px",
+            placeItems: "center",
+          }}
+        >
+          {members.map((member, idx) => (
+            <Box style={{ width: "200px" }} key={idx}>
+              <Typography variant="body1">
+                {" "}
+                {member.profile.username}{" "}
+              </Typography>
+              {member.profile.electoral_predictions ? (
+                <USMap
+                  setSelectedStates={() => {}}
+                  selectedStates={member.profile.electoral_predictions}
+                  viewOnly={true}
+                  smallView
+                />
+              ) : (
+                <PlaceholderMap smallView />
+              )}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

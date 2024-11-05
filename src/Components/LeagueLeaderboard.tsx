@@ -1,20 +1,10 @@
-import Table from "@mui/material/Table";
-
-import { SelectedElectoralVotes } from "../types";
-import {
-  Skeleton,
-  Box,
-  Typography,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import { Skeleton, Box, Typography } from "@mui/material";
 
 type Member = {
   user_id: string;
   profile: {
     username: string | null;
-    electoral_predictions: SelectedElectoralVotes;
+    electoral_predictions: any;
   };
 };
 
@@ -25,18 +15,17 @@ interface LeagueLeaderboardProps {
 export const LeagueLeaderboard = ({ members }: LeagueLeaderboardProps) => {
   return (
     <Box>
-      <Typography> Leaderboard </Typography>
-      <Table>
-        <TableBody>
-          {members.map((_, idx) => (
-            <TableRow key={idx}>
-              <TableCell>
-                <Skeleton animation={false} sx={{ maxWidth: "300px" }} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <Typography>Leaderboard</Typography>
+      <Box>
+        {members.map((_, idx) => (
+          <Box key={idx} sx={{ display: "flex", mb: 1 }}>
+            <Skeleton
+              animation={false}
+              sx={{ width: "100%", maxWidth: "300px" }}
+            />
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };
