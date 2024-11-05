@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   setIsDrawerOpen: (isDrawerOpen: boolean) => void;
+  setTriggerRefetch: (triggerRefetch: boolean) => void;
 }
-export const NewLeague = ({ setIsDrawerOpen }: Props) => {
+export const NewLeague = ({ setIsDrawerOpen, setTriggerRefetch }: Props) => {
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState<{
     name?: string;
@@ -104,7 +105,9 @@ export const NewLeague = ({ setIsDrawerOpen }: Props) => {
     } else {
       setStatus("");
       navigate(`/league/${newLeague.invite_code}`);
+
       setFormData({ name: "", buy_in: null });
+      setTriggerRefetch(false);
       setIsDrawerOpen(false);
     }
   };

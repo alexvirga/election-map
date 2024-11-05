@@ -4,7 +4,10 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "../../context/SessionContext";
 
-export const JoinLeague = () => {
+interface Props {
+  setTriggerRefetch: (triggerRefetch: boolean) => void;
+}
+export const JoinLeague = ({ setTriggerRefetch }: Props) => {
   const [inviteCode, setInviteCode] = useState("");
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState<{ inviteCode?: string }>({});
@@ -72,11 +75,11 @@ export const JoinLeague = () => {
       ])
       .select();
 
-    console.log(data);
     if (userLeagueError) {
       setStatus(`Error joining league: ${userLeagueError.message}`);
     } else {
-      navigate(`/league/${data[0].league_id}`);
+      navigate(`/league/${inviteCode}`);
+      setTriggerRefetch(true);
     }
 
     setInviteCode("");

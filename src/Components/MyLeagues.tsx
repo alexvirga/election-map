@@ -11,13 +11,17 @@ type League = {
   };
 };
 
-export const MyLeagues = () => {
+interface Props {
+  triggerRefetch: boolean;
+}
+export const MyLeagues = ({ triggerRefetch }: Props) => {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLeagues = async () => {
+      console.log("fetching");
       setStatus("Loading...");
       const {
         data: { session },
@@ -44,7 +48,7 @@ export const MyLeagues = () => {
     };
 
     fetchLeagues();
-  }, []);
+  }, [triggerRefetch]);
 
   return (
     <Box

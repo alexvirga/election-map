@@ -25,6 +25,7 @@ import MapIcon from "@mui/icons-material/Map";
 const SideDrawer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [username, setUsername] = useState<string>("");
+  const [triggerRefetch, setTriggerRefetch] = useState(false);
   const { session } = useSession();
   const user = session?.user;
   const theme = useTheme();
@@ -132,12 +133,15 @@ const SideDrawer = () => {
 
           <Divider sx={{ marginBottom: 2, borderColor: "#494949" }} />
 
-          <MyLeagues />
+          <MyLeagues triggerRefetch={triggerRefetch} />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
-          <JoinLeague />
+          <JoinLeague setTriggerRefetch={setTriggerRefetch} />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
           <Typography sx={{ color: "#ffffff" }}> Create New League </Typography>
-          <NewLeague setIsDrawerOpen={setIsDrawerOpen} />
+          <NewLeague
+            setIsDrawerOpen={setIsDrawerOpen}
+            setTriggerRefetch={setTriggerRefetch}
+          />
           <Divider sx={{ marginY: 2, borderColor: "#494949" }} />
         </Box>
         <Button
