@@ -84,8 +84,8 @@ export const Dashboard = () => {
             borderBottom: "1px solid #ffeeba",
           }}
         >
-          You have until 6 PM EST on Tuesday to lock in your selection. Don't
-          forget to hit save!
+          You have until 6 PM EST on Tuesday to change your selection. <br />{" "}
+          Don't forget to hit save!
         </div>
 
         <ElectoralBar

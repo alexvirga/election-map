@@ -49,11 +49,16 @@ const Countdown = () => {
         display: "flex",
         alignItems: "baseline",
         margin: "auto",
-        justifyContent: "center",
+        justifyContent: "end",
         width: "280px",
       }}
     >
-      <Box style={{ fontSize: "32px", fontWeight: 100 }}>
+      <Box
+        sx={{
+          fontSize: "1.25rem",
+          fontWeight: 100,
+        }}
+      >
         <span style={{ marginRight: "5px" }}>
           {String(timeLeft.days).padStart(2, "0")}
         </span>
