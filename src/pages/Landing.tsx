@@ -38,7 +38,20 @@ const Landing = () => {
       >
         POLLLEAGUE
       </Typography>
-      <Divider sx={{ width: "60%" }} />
+      <Typography
+        variant="body2"
+        sx={{
+          display: "flex",
+          maxWidth: "600px",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        Predict electoral outcomes on an interactive US map and join leagues to
+        compete with friends. Lock in your picks by 6 PM EST Tuesday Nov. 5th,
+        then explore and compare predictions with other league members.
+      </Typography>
+      <Divider sx={{ width: "60%", mt: "20px" }} />
       <AuthPage />
       <Divider sx={{ width: "60%" }} />
       <div
